@@ -17,7 +17,7 @@ public class ProductPageSteps {
         return productPage.getProductLogoText();
     }
 
-    @Step("Open item page ")
+    @Step("Open item page : {itemName} ")
     public void openItemPage(String itemName) {
         productPage.openItemPage(itemName);
     }
@@ -30,5 +30,11 @@ public class ProductPageSteps {
 
     public void verifyRemoveButtonIsDisplaying() {
         productPage.removeItemFromCartButtonExist();
+    }
+
+    @Step("Click the Cart Icon")
+            public void ClickCartIcon()
+    {
+        productPage.clickCartIcon();
     }
 }

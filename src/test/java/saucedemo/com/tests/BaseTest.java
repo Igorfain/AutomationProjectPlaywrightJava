@@ -3,8 +3,8 @@ package saucedemo.com.tests;
 import com.microsoft.playwright.*;
 import io.qameta.allure.Step;
 import io.qameta.allure.internal.shadowed.jackson.databind.ObjectMapper;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import saucedemo.com.steps.LoginSteps;
 
 import java.io.File;
@@ -16,7 +16,7 @@ public abstract class BaseTest {
     protected Browser browser;
     protected Page page;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         Map<String, String> config = readConfigFile("src/test/java/saucedemo/com/infra/MainConfig.json");
         String url = config.get("url");
@@ -24,7 +24,7 @@ public abstract class BaseTest {
         String password = config.get("password");
 
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();
@@ -39,8 +39,9 @@ public abstract class BaseTest {
         loginSteps.login(username, password);
         }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
+        page.close();
         browser.close();
         playwright.close();
     }

@@ -1,20 +1,21 @@
 package saucedemo.com.tests;
 
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.ConsoleReporter;
-import saucedemo.com.steps.LoginSteps;
+import saucedemo.com.steps.CartPageSteps;
 import saucedemo.com.steps.ProductPageSteps;
 
 public class PlaywrightTests extends BaseTest {
 
-    private LoginSteps loginSteps;
-     private ProductPageSteps productPageSteps;
+    private CartPageSteps cartPageSteps;
+    private ProductPageSteps productPageSteps;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUpTest() {
 
         productPageSteps = new ProductPageSteps(page);
+        cartPageSteps = new CartPageSteps(page);
     }
 
     @Test(description = "Verify product page logo")
@@ -27,7 +28,7 @@ public class PlaywrightTests extends BaseTest {
     }
 
     @Test(description = "Open item page and add to cart")
-    public void SelectItemAndAddToCard() {
+    public void selectItemAndAddToCard() {
         ConsoleReporter.log("Step 1 - Open item page");
         var itemName1 = "Sauce Labs Backpack";
         productPageSteps.openItemPage(itemName1);
@@ -39,5 +40,34 @@ public class PlaywrightTests extends BaseTest {
 
     }
 
+    @Test(description = "Open item page and add to cart")
+    public void openCartAndRemoveOrder() {
+        ConsoleReporter.log("Step 1 - Open item page");
+        var itemName1 = "Sauce Labs Backpack";
+        productPageSteps.openItemPage(itemName1);
+        ConsoleReporter.log("Step 2 - Open item to the cart");
+        productPageSteps.addItemToTheCart();
+        ConsoleReporter.log("Step 3 - Click the Cart icon and open cart page");
+        productPageSteps.ClickCartIcon();
+        ConsoleReporter.log("Step 4 - Remove order from the cart");
+        cartPageSteps.removeOrderFromCart();
+        ConsoleReporter.log("Step 5 - Verify order removed from the cart");
+        cartPageSteps.verifyOrderRemovedFromCart();
+
+    }
+
+    @Test(description = "Verify Continue shopping button present and text ")
+    public void verifyShoppingButtonIsExisting() {
+        String buttonNameRef = "Continue Shopping";
+        ConsoleReporter.log("Step 1 - Open Cart page");
+        productPageSteps.ClickCartIcon();
+        ConsoleReporter.log("Step 2 - Verify Button is existing");
+        cartPageSteps.verifyContinueShopButtonIsExisting();
+        ConsoleReporter.log("Step 3 - Verify Button text");
+        cartPageSteps.verifyButtonName(buttonNameRef);
+        ConsoleReporter.log("Step 4 - Verify Button is working and main page is displayed");
+        cartPageSteps.clickButtonAndVerifyMainPageIsDisplayed();
+
+    }
 
 }

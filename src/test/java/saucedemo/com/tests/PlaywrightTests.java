@@ -1,6 +1,6 @@
 package saucedemo.com.tests;
 
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.ConsoleReporter;
 import saucedemo.com.steps.CartPageSteps;
@@ -11,7 +11,7 @@ public class PlaywrightTests extends BaseTest {
     private CartPageSteps cartPageSteps;
     private ProductPageSteps productPageSteps;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUpTest() {
 
         productPageSteps = new ProductPageSteps(page);

@@ -16,14 +16,14 @@ public class UserTests extends BaseTest {
 
     @Test
     public void testGetUserDetails() {
-        Response response = apiRequestHelper.sendGetRequest(Endpoints.GET_POST_BY_ID("2"));
+        var response = apiRequestHelper.sendGetRequest(Endpoints.GET_POST_BY_ID("2"));
         responseValidator.validateUserDetailsResponse(response);
     }
 
     @Test
     public void testCreateUserPost() {
         String requestBody = createPostRequestBody("test title", "test body content", 2);
-        Response response = apiRequestHelper.sendPostRequest(Endpoints.CREATE_POST, requestBody);
+        var response = apiRequestHelper.sendPostRequest(Endpoints.CREATE_POST, requestBody);
         responseValidator.validateUserPostResponse(response);
     }
 
@@ -33,7 +33,7 @@ public class UserTests extends BaseTest {
         String requestBody = createPostRequestBody("updated title", "updated body content", 2);
 
         // Отправка PUT-запроса для обновления данных пользователя
-        Response response = apiRequestHelper.sendPutRequest(Endpoints.GET_POST_BY_ID("2"), requestBody);
+        var response = apiRequestHelper.sendPutRequest(Endpoints.GET_POST_BY_ID("2"), requestBody);
 
         // Проверка ответа
         responseValidator.validateUpdateUserResponse(response);
@@ -41,7 +41,7 @@ public class UserTests extends BaseTest {
 
     @Test
     public void testDeleteUser() {
-        Response response = apiRequestHelper.sendDeleteRequest(Endpoints.GET_POST_BY_ID("2"));
+        var response = apiRequestHelper.sendDeleteRequest(Endpoints.GET_POST_BY_ID("2"));
         responseValidator.validateDeleteUserResponse(response);
     }
 

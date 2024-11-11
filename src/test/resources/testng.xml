@@ -6,4 +6,11 @@
             <!-- Add more test classes as needed -->
         </classes>
     </test>
+
+    <test name="API Tests Suite">
+        <classes>
+            <class name="ApiTests.tests.UserTests" />
+            <!-- Add more API test classes as needed -->
+        </classes>
+    </test>
 </suite>

@@ -45,7 +45,7 @@ public class UserTests extends BaseTest {
         responseValidator.validateDeleteUserResponse(response);
     }
 
-//    private final String token = "your_access_token_here"; // Замените на ваш реальный токен
+//    private final String token = "your_access_token_here"; // Замените на ваш реальный токен v
 //
 //    @Test
 //    public void testGetUserDetailsWithAuth() {

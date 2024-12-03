@@ -9,7 +9,7 @@ public class ApiRequestHelper {
         return RestAssured.given().get(endpoint);
     }
 
-    public Response sendPostRequest(String endpoint, String requestBody) {
+    public static Response sendPostRequest(String endpoint, String requestBody) {
         return RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(requestBody)

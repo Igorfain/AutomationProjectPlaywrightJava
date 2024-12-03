@@ -29,13 +29,9 @@ public class UserTests extends BaseTest {
 
     @Test
     public void testUpdateUserDetails() {
-        // Создание JSON тела для обновления данных
+
         String requestBody = createPostRequestBody("updated title", "updated body content", 2);
-
-        // Отправка PUT-запроса для обновления данных пользователя
         var response = apiRequestHelper.sendPutRequest(Endpoints.GET_POST_BY_ID("2"), requestBody);
-
-        // Проверка ответа
         responseValidator.validateUpdateUserResponse(response);
     }
 
@@ -44,6 +40,29 @@ public class UserTests extends BaseTest {
         var response = apiRequestHelper.sendDeleteRequest(Endpoints.GET_POST_BY_ID("2"));
         responseValidator.validateDeleteUserResponse(response);
     }
+
+    // Negative Tests
+
+    @Test
+    public void testGetNonExistentUser() {
+        var response = apiRequestHelper.sendGetRequest(Endpoints.GET_POST_BY_ID("9999"));
+        responseValidator.validateNotFoundResponse(response);
+    }
+
+    @Test
+    public void testCreateUserWithInvalidData() {
+        String invalidRequestBody = "{ \"title\": 12345, \"body\": [], \"userId\": \"invalid_id\" }";
+        Response response = apiRequestHelper.sendPostRequest(Endpoints.CREATE_POST, invalidRequestBody);
+        responseValidator.validateBadRequestResponse(response);
+    }
+
+    @Test
+    public void testDeleteNonExistentUser(){
+        Response response = apiRequestHelper.sendDeleteRequest(Endpoints.GET_POST_BY_ID("99999"));
+        responseValidator.validateNotFoundResponse(response);
+    }
+
+
 
 //    private final String token = "your_access_token_here"; // Замените на ваш реальный токен v
 //

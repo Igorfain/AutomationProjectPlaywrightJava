@@ -9,4 +9,12 @@ public class JsonUtils {
                 "\"userId\": " + userId +
                 "}";
     }
+
+    public static String createPostRequestBodyAuthors(int id, String idBook, String url) {
+        return "{" +
+                "\"id\": \"" + id + "\"," +
+                "\"idBook\": \"" + idBook + "\"," +
+                "\"url\": " + url +
+                "}";
+    }
 }

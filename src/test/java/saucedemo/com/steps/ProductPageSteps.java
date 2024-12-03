@@ -26,6 +26,7 @@ public class ProductPageSteps {
     public void addItemToTheCart() {
         productPage.addItemToCart();
     }
+
     @Step("Verify Remove Button is displaying ")
 
     public void verifyRemoveButtonIsDisplaying() {
@@ -33,8 +34,15 @@ public class ProductPageSteps {
     }
 
     @Step("Click the Cart Icon")
-            public void ClickCartIcon()
-    {
+    public void ClickCartIcon() {
         productPage.clickCartIcon();
     }
+
+    @Step("Click the sorting dropdown and select value")
+    public void ClickTheSortingDropdownAndSelectValue(String sortingOption) {
+        productPage.clickSortingDropdownAndSelectValue(sortingOption);
+        productPage.verifyItemsOrderedByAtoZ();
+    }
+
+
 }

@@ -15,16 +15,17 @@ public abstract class BaseTest {
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;
+    private String configFilePath = "src/test/java/saucedemo/com/infra/MainConfig.json";
 
     @BeforeMethod
     public void setUp() {
-        Map<String, String> config = readConfigFile("src/test/java/saucedemo/com/infra/MainConfig.json");
+        Map<String, String> config = readConfigFile(configFilePath);
         String url = config.get("url");
         String username = config.get("username");
         String password = config.get("password");
 
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();
@@ -41,10 +42,17 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        page.close();
-        browser.close();
-        playwright.close();
+        if (page != null && !page.isClosed()) {
+            page.close();
+        }
+        if (browser != null) {
+            browser.close();
+        }
+        if (playwright != null) {
+            playwright.close();
+        }
     }
+
 
     private Map<String, String> readConfigFile(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();

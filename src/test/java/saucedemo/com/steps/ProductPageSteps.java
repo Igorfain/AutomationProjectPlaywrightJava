@@ -41,8 +41,26 @@ public class ProductPageSteps {
     @Step("Click the sorting dropdown and select value")
     public void ClickTheSortingDropdownAndSelectValue(String sortingOption) {
         productPage.clickSortingDropdownAndSelectValue(sortingOption);
+    }
+
+    @Step("Verify items was ordered A to Z")
+    public void verifyItemsOrderedAtoZ() {
         productPage.verifyItemsOrderedByAtoZ();
     }
 
+    @Step("Verify items was ordered A to Z")
+    public void verifyItemsPriceOrderedLowHigh() {
+        productPage.verifyItemsPriceOrderedLowHigh();
+    }
+
+    @ Step("Logout from the site")
+    public void logoutFromSite() {
+        productPage.logout();
+    }
+
+    @Step("Verify Logout is successful")
+    public void verifyLogout() {
+        productPage.verifyLogout();
+    }
 
 }

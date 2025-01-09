@@ -1,0 +1,7 @@
+<suite name="Parallel Tests" parallel="methods" thread-count="3">
+    <test name="Test Suite">
+        <classes>
+            <class name="saucedemo.com.tests.PlaywrightTests"/>
+        </classes>
+    </test>
+</suite>

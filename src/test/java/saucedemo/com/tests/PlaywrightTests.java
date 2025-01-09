@@ -70,4 +70,12 @@ public class PlaywrightTests extends BaseTest {
 
     }
 
+    @Test(description = "Logout from the site")
+    public void logoutFromSite() {
+        ConsoleReporter.log("Step 1 - Logout from the site");
+        productPageSteps.logoutFromSite();
+        ConsoleReporter.log("Step 2 - Verify user is logged out");
+        productPageSteps.verifyLogout();
+    }
+
 }

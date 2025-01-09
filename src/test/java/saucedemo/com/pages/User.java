@@ -4,13 +4,13 @@ public class User {
     private String username;
     private String password;
 
-    // Конструктор
+    // Constructor
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    // Геттеры
+    // Getter
     public String getUsername() {
         return username;
     }
@@ -19,7 +19,7 @@ public class User {
         return password;
     }
 
-    // Сеттеры
+    // Setters
     public void setUsername(String username) {
         this.username = username;
     }

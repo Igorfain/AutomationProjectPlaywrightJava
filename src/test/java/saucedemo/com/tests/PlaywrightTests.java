@@ -13,10 +13,10 @@ public class PlaywrightTests extends BaseTest {
 
     @BeforeMethod
     public void setUpTest() {
-
         productPageSteps = new ProductPageSteps(page);
         cartPageSteps = new CartPageSteps(page);
     }
+
 
     @Test(description = "Verify product page logo")
     public void testProductPageLogo() {
@@ -37,7 +37,6 @@ public class PlaywrightTests extends BaseTest {
         ConsoleReporter.log("Step 3 - Verify Remove button is displaying");
         productPageSteps.verifyRemoveButtonIsDisplaying();
         ConsoleReporter.log("Test completed successfully");
-
     }
 
     @Test(description = "Open item page and add to cart")
@@ -53,7 +52,6 @@ public class PlaywrightTests extends BaseTest {
         cartPageSteps.removeOrderFromCart();
         ConsoleReporter.log("Step 5 - Verify order removed from the cart");
         cartPageSteps.verifyOrderRemovedFromCart();
-
     }
 
     @Test(description = "Verify Continue shopping button present and text ")
@@ -67,7 +65,6 @@ public class PlaywrightTests extends BaseTest {
         cartPageSteps.verifyButtonName(buttonNameRef);
         ConsoleReporter.log("Step 4 - Verify Button is working and main page is displayed");
         cartPageSteps.clickButtonAndVerifyMainPageIsDisplayed();
-
     }
 
     @Test(description = "Logout from the site")

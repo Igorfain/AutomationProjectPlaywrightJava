@@ -2,46 +2,48 @@ package saucedemo.com.tests;
 
 import com.microsoft.playwright.*;
 import io.qameta.allure.Step;
-import io.qameta.allure.internal.shadowed.jackson.databind.ObjectMapper;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 import saucedemo.com.steps.LoginSteps;
+import saucedemo.com.utils.ConfigReader;
+import saucedemo.com.utils.ConfigPaths;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 public abstract class BaseTest {
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;
-    private String configFilePath = "src/test/java/saucedemo/com/infra/MainConfig.json";
+
+    protected String url;
+    protected String username;
+    protected String password;
 
     @BeforeMethod
     public void setUp() {
-        Map<String, String> config = readConfigFile(configFilePath);
-        String url = config.get("url");
-        String username = config.get("username");
-        String password = config.get("password");
+
+        Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
+        loadCredentialsFromConfig(config);
 
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();
-        page.navigate(url);
-
-        login(username, password);
+        navigateToUrlAndPerformDefaultLogin();
     }
 
-    @Step("Login")
-    public void login(String username, String password) {
+    @Step("Navigate to the URL and perform default login")
+    public void navigateToUrlAndPerformDefaultLogin() {
+        page.navigate(url);
         LoginSteps loginSteps = new LoginSteps(page);
         loginSteps.login(username, password);
-        }
+    }
+
+
 
     @AfterMethod
     public void tearDown() {
+        // Clean up resources
         if (page != null && !page.isClosed()) {
             page.close();
         }
@@ -53,15 +55,13 @@ public abstract class BaseTest {
         }
     }
 
+    private void loadCredentialsFromConfig(Map<String, Object> config) {
+        url = (String) config.get("url");
+        username = (String) config.get("username");
+        password = (String) config.get("password");
 
-    private Map<String, String> readConfigFile(String filePath) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(new File(filePath), Map.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to read the configuration file.");
+        if (url == null || username == null || password == null) {
+            throw new RuntimeException("Missing required credentials or URL in the configuration file.");
         }
-
     }
 }

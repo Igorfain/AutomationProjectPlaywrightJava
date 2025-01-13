@@ -1,6 +1,11 @@
 {
+  "_comment 1": "This is the main configuration file for the project.",
+  "_comment 2": "The URL of the application under test is provided below.",
   "url": "https://www.saucedemo.com/",
-
+  "_comment 3": "Credentials for STANDARD user are provided below.",
   "username": "standard_user",
-  "password": "secret_sauce"
+  "password": "secret_sauce",
+  "_comment 4": "Credentials for PROBLEM user are provided below.",
+  "problem_user": "problem_user",
+  "problem_user_password": "secret_sauce"
 }

@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven' // Use the name you configured in Global Tool Configuration
+        jdk 'Java 17' // Use the name you configured in Global Tool Configuration
     }
 
     stages {
@@ -34,11 +34,10 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'target/allure-results/**/*', allowEmptyArchive: true
-            archiveArtifacts artifacts: 'target/allure-report/**/*', allowEmptyArchive: true
         }
 
         failure {
-            echo 'Build failed. Check the logs for more details.'
+            echo 'Build failed. Check the logs for details.'
         }
     }
 }

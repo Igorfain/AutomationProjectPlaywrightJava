@@ -9,24 +9,9 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 sh '''
-                    # Update package lists
-                    sudo apt-get update
-
-                    # Install missing dependencies for Playwright
-                    sudo apt-get install -y libxkbcommon0 libgbm1
-
-                    # Install unzip for handling Allure
-                    sudo apt-get install -y unzip
-
-                    # Download and install Allure CLI
-                    curl -o allure.zip -L https://github.com/allure-framework/allure2/releases/latest/download/allure-2.21.0.zip
-                    unzip allure.zip -d /opt/allure
-                    ln -sf /opt/allure/allure-2.21.0/bin/allure /usr/local/bin/allure
-                    chmod +x /usr/local/bin/allure
-                    rm -f allure.zip
-
-                    # Verify Allure installation
-                    allure --version
+                    apt-get update
+                    apt-get install -y libxkbcommon0 libgbm1
+                    apt-get install -y allure
                 '''
             }
         }
@@ -58,7 +43,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/allure-results/**/*, target/allure-report/**/*', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/allure-results/**/*', allowEmptyArchive: true
         }
 
         failure {

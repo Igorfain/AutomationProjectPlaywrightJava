@@ -29,7 +29,7 @@ public abstract class BaseTests {
         loadCredentialsFromConfig(config);
 
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();

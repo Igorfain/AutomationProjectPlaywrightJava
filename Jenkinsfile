@@ -33,6 +33,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'allure-results/**/*', allowEmptyArchive: true
+            allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]
         }
         failure {
             echo 'Build failed. Check the logs for details.'

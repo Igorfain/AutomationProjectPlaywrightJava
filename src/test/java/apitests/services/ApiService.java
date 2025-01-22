@@ -1,4 +1,4 @@
-package ApiTests.services;
+package apitests.services;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

@@ -1,4 +1,4 @@
-package ApiTests.helpers;
+package apitests.helpers;
 
 import io.restassured.response.Response;
 import io.restassured.RestAssured;

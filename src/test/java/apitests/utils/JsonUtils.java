@@ -1,4 +1,4 @@
-package ApiTests.utils;
+package apitests.utils;
 
 public class JsonUtils {
 

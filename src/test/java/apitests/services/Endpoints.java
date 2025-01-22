@@ -1,4 +1,4 @@
-package ApiTests.services;
+package apitests.services;
 
 public class Endpoints {
 

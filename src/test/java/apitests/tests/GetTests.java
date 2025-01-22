@@ -1,7 +1,7 @@
 package tests;
 
-import ApiTests.BaseTest;
-import ApiTests.services.ApiService;
+import apitests.BaseTest;
+import apitests.services.ApiService;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;

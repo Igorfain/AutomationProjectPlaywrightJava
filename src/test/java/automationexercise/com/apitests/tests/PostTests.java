@@ -1,8 +1,8 @@
-package tests;
+package automationexercise.com.apitests.tests;
 
-import ApiTests.BaseTest;
-import ApiTests.services.ApiService;
-import ApiTests.utils.JsonUtils;
+import apitests.BaseTest;
+import apitests.services.ApiService;
+import apitests.utils.JsonUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;

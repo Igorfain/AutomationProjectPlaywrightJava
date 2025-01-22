@@ -1,13 +1,13 @@
-package ApiTests.tests;
+package apitests.tests;
 
-import ApiTests.BaseTest;
-import ApiTests.services.Endpoints;
-import ApiTests.helpers.ApiRequestHelper;
-import ApiTests.helpers.ResponseValidator;
+import apitests.BaseTest;
+import apitests.services.Endpoints;
+import apitests.helpers.ApiRequestHelper;
+import apitests.helpers.ResponseValidator;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static ApiTests.utils.JsonUtils.createPostRequestBody;
+import static apitests.utils.JsonUtils.createPostRequestBody;
 
 public class UserTests extends BaseTest {
 

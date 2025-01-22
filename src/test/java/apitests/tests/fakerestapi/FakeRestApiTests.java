@@ -1,13 +1,11 @@
-package ApiTests.tests.fakerestapi;
+package apitests.tests.fakerestapi;
 
-import ApiTests.helpers.ApiRequestHelper;
-import ApiTests.helpers.ResponseValidator;
-import ApiTests.services.Endpoints;
+import apitests.helpers.ApiRequestHelper;
+import apitests.helpers.ResponseValidator;
+import apitests.services.Endpoints;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import static ApiTests.utils.JsonUtils.createPostRequestBodyAuthors;
 
 public class FakeRestApiTests {
 

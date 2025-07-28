@@ -26,7 +26,7 @@
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>1.39.0</version>
+            <version>1.53.0</version>
         </dependency>
 
         <!-- TestNG dependency -->
@@ -46,13 +46,6 @@
         </dependency>
 
         <!-- Allure TestNG Adapter -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.29.1</version>
-        </dependency>
-
-        <!-- Allure Java Commons -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>

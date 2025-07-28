@@ -2,5 +2,7 @@
   "url": "https://automationexercise.com/login",
   "_comment 3": "Credentials for login",
   "username": "igiayehu@gmail.com",
-  "password": "Test12345"
+  "password": "Test12345",
+  "invalidUsername":"invalidUser",
+  "invalidPassword" :"invalidPass"
 }

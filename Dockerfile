@@ -2,12 +2,32 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Install required dependencies and download Allure
+# Устанавливаем OpenJDK 17 и необходимые зависимости для Playwright + Allure
 RUN apt-get update && \
     apt-get install -y \
         openjdk-17-jdk \
         libxkbcommon0 \
         libgbm1 \
+        libglib2.0-0 \
+        libnss3 \
+        libnspr4 \
+        libatk1.0-0 \
+        libatk-bridge2.0-0 \
+        libcups2 \
+        libdrm2 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxrandr2 \
+        libasound2 \
+        libxshmfence1 \
+        libx11-xcb1 \
+        libxrender1 \
+        libxtst6 \
+        libx11-6 \
+        fonts-liberation \
+        libappindicator3-1 \
+        libxss1 \
+        lsb-release \
         wget \
         unzip && \
     wget https://github.com/allure-framework/allure2/releases/download/2.20.0/allure-2.20.0.zip -O /tmp/allure.zip && \

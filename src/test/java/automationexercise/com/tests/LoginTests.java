@@ -5,7 +5,6 @@ import automationexercise.com.steps.MainPageSteps;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 public class LoginTests extends BaseTests {
 
     private MainPageSteps mainPageSteps;
@@ -20,6 +19,6 @@ public class LoginTests extends BaseTests {
         ConsoleReporter.log("Step 1 - Verify login in main page");
         String expectedUserText = "TestUser";
         mainPageSteps.verifyLoggedInUser(expectedUserText);
-
     }
+
 }

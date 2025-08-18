@@ -1,75 +1,157 @@
 package automationexercise.com.infra.actions;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.SelectOption;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class ActionBot {
-
-    private Page page;
+    private final Page page;
 
     public ActionBot(Page page) {
         this.page = page;
     }
 
     /**
-     * Clicks on an element using its CSS selector.
+     * Clicks on an element.
      *
-     * @param selector CSS selector of the element to click
+     * @param locator Playwright Locator of the element to click
      */
-    public void click(String selector) {
-        page.locator(selector).click();
+    public void click(Locator locator) {
+        locator.click();
     }
 
     /**
      * Fills an input field with the given text.
      *
-     * @param selector CSS selector of the input field
-     * @param text     Text to input
+     * @param locator Locator of the input field
+     * @param text    Text to input
      */
-    public void fill(String selector, String text) {
-        page.locator(selector).fill(text);
+    public void fill(Locator locator, String text) {
+        locator.fill(text);
     }
 
     /**
-     * Selects an option from a dropdown using the visible text.
+     * Types text into an input field and presses Enter.
      *
-     * @param selector   CSS selector of the dropdown
-     * @param optionText Visible text of the option to select
+     * @param locator Locator of the input field
+     * @param text    Text to type
      */
-    public void selectOptionByText(String selector, String optionText) {
-        page.locator(selector).selectOption(optionText);
+    public void typeAndPressEnter(Locator locator, String text) {
+        locator.type(text);
+        locator.press("Enter");
+    }
+
+    /**
+     * Scrolls to an element.
+     *
+     * @param locator Locator of the element to scroll to
+     */
+    public void scrollToElement(Locator locator) {
+        locator.scrollIntoViewIfNeeded();
     }
 
     /**
      * Waits for an element to be visible on the page.
      *
-     * @param selector CSS selector of the element
+     * @param locator Locator of the element
      */
-    public void waitForVisibility(String selector) {
-        page.locator(selector).waitFor();
+    public void waitForVisibility(Locator locator) {
+        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
     }
 
     /**
      * Checks if an element is visible on the page.
      *
-     * @param selector CSS selector of the element
-     * @return true if the element is visible, false otherwise
+     * @param locator Locator of the element
+     * @return true if visible, false otherwise
      */
-    public boolean isVisible(String selector) {
-        return page.locator(selector).isVisible();
+    public boolean isVisible(Locator locator) {
+        return locator.isVisible();
     }
 
     /**
-     * Checks if an element with the specified name attribute is visible on the page.
-     * @param nameAttribute The value of the name attribute for the element.
-     * @return true if the element is visible, false otherwise.
+     * Gets the text content of an element.
+     *
+     * @param locator Locator of the element
+     * @return Text content
      */
-    public boolean isVisibleByName(String nameAttribute) {
-        return page.locator("[name='" + nameAttribute + "']").isVisible();
+    public String getText(Locator locator) {
+        return locator.textContent();
     }
 
     /**
-     * Clicks on an element using its role.
+     * Checks if an element contains the specified text.
+     *
+     * @param locator Locator of the element
+     * @param text    Text to check for
+     * @return true if contains text, false otherwise
+     */
+    public boolean containsText(Locator locator, String text) {
+        String content = locator.textContent();
+        return content != null && content.contains(text);
+    }
+
+    /**
+     * Selects an option from a dropdown by visible text.
+     *
+     * @param select Locator of the dropdown
+     * @param label  Visible text of the option
+     */
+    public void selectOptionByText(Locator select, String label) {
+        select.selectOption(new SelectOption().setLabel(label));
+    }
+
+    /**
+     * Selects an option from a dropdown by value.
+     *
+     * @param select Locator of the dropdown
+     * @param value  Value attribute of the option
+     */
+    public void selectOptionByValue(Locator select, String value) {
+        select.selectOption(value);
+    }
+
+    /**
+     * Selects a radio button.
+     *
+     * @param locator Locator of the radio button
+     */
+    public void selectRadioButton(Locator locator) {
+        locator.check();
+    }
+
+    /**
+     * Selects (checks) a checkbox.
+     *
+     * @param locator Locator of the checkbox
+     */
+    public void selectCheckbox(Locator locator) {
+        locator.check();
+    }
+
+    /**
+     * Unselects (unchecks) a checkbox.
+     *
+     * @param locator Locator of the checkbox
+     */
+    public void unselectCheckbox(Locator locator) {
+        locator.uncheck();
+    }
+
+    /**
+     * Gets an element by name attribute.
+     *
+     * @param nameAttribute value of the name attribute
+     * @return Locator of the element
+     */
+    public Locator byName(String nameAttribute) {
+        return page.locator("[name='" + nameAttribute + "']");
+    }
+
+    /**
+     * Clicks an element by its ARIA role.
      *
      * @param role ARIA role of the element
      */
@@ -78,52 +160,33 @@ public class ActionBot {
     }
 
     /**
-     * Types text into an input field and presses Enter.
+     * Clicks an element by its ARIA role and visible name.
      *
-     * @param selector CSS selector of the input field
-     * @param text     Text to type
+     * @param role ARIA role
+     * @param name Visible name
      */
-    public void typeAndPressEnter(String selector, String text) {
-        page.locator(selector).type(text);
-        page.keyboard().press("Enter");
+    public void clickByRole(AriaRole role, String name) {
+        page.getByRole(role, new Page.GetByRoleOptions().setName(name)).click();
     }
 
     /**
-     * Checks if an element contains the specified text.
+     * Selects an option from a dropdown by visible label.
      *
-     * @param selector CSS selector of the element
-     * @param text     Text to check for
-     * @return true if the element contains the text, false otherwise
+     * @param locator The Playwright Locator for the dropdown
+     * @param label   Visible text of the option
      */
-    public boolean containsText(String selector, String text) {
-        return page.locator(selector).textContent().contains(text);
+    public void selectDropdownByLabel(Locator locator, String label) {
+        locator.selectOption(new com.microsoft.playwright.options.SelectOption().setLabel(label));
     }
 
     /**
-     * Gets the text content of an element.
+     * Selects an option from a dropdown by value.
      *
-     * @param selector CSS selector of the element
-     * @return Text content of the element
+     * @param locator The Playwright Locator for the dropdown
+     * @param value   Value attribute of the option
      */
-    public String getText(String selector) {
-        return page.locator(selector).textContent();
+    public void selectDropdownByValue(Locator locator, String value) {
+        locator.selectOption(value);
     }
 
-    /**
-     * Scrolls to an element using its CSS selector.
-     *
-     * @param selector CSS selector of the element to scroll to
-     */
-    public void scrollToElement(String selector) {
-        page.locator(selector).scrollIntoViewIfNeeded();
-    }
-
-    /**
-     * Retrieves text from an element located by name attribute.
-     * @param nameAttribute The value of the name attribute for the element.
-     * @return The text content of the element.
-     */
-    public String getTextByName(String nameAttribute) {
-        return page.locator("[name='" + nameAttribute + "']").innerText();
-    }
 }

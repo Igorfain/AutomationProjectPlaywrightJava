@@ -5,6 +5,8 @@ import com.microsoft.playwright.Page;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class MainPageSteps {
 
     private final MainPage mainPage;
@@ -20,6 +22,11 @@ public class MainPageSteps {
         mainPage.verifyLoggedInUser(expectedUserText);
         mainPage.getLoggedInUserText();
         mainPage.verifyLoggedInUser(expectedUserText);
+    }
+
+    @Step("Verify Main page logo is visible")
+    public void verifyMainPageLogoIsVisible(){
+        assertThat(mainPage.logo).isVisible();
     }
 
 }

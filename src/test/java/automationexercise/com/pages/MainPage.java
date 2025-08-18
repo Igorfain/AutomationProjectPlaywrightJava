@@ -1,10 +1,13 @@
 package automationexercise.com.pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class MainPage extends BasePage {
     // Locators
-    private String loggedInTextSelector = "a i.fa.fa-user + b";
+    private final String loggedInTextSelector = "a i.fa.fa-user + b";
+    public final Locator logo = page.locator("img[alt='Website for automation practice']");
+
 
 
     public MainPage(Page page) {

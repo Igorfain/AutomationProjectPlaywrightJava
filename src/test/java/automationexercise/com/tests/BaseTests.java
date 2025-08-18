@@ -1,7 +1,7 @@
 package automationexercise.com.tests;
 
 import com.microsoft.playwright.*;
-import io.qameta.allure.Step;
+//import io.qameta.allure.Step;
 import io.qameta.allure.Attachment;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -23,25 +23,34 @@ public abstract class BaseTests {
     protected String username;
     protected String password;
 
+    protected boolean doDefaultLogin() {
+        return true;
+    }
+
     @BeforeMethod
     public void setUp() {
+
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
-
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();
-        navigateToUrlAndPerformDefaultLogin();
+        page.navigate(url);
+
+        if (doDefaultLogin()) {
+            LoginSteps loginSteps = new LoginSteps(page);
+            loginSteps.login(username, password);
+        }
     }
 
-    @Step("Navigate to the URL and perform default login")
-    public void navigateToUrlAndPerformDefaultLogin() {
-        page.navigate(url);
-        LoginSteps loginSteps = new LoginSteps(page);
-        loginSteps.login(username, password);
-    }
+    //@Step("Navigate to the URL and perform default login")
+   // public void navigateToUrlAndPerformDefaultLogin() {
+   //     page.navigate(url);
+    //    LoginSteps loginSteps = new LoginSteps(page);
+    //    loginSteps.login(username, password);
+ //   }
 
     @AfterMethod
     public void tearDown(ITestResult result) {

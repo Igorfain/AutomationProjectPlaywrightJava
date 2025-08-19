@@ -68,7 +68,7 @@ public class LoginSteps {
         loginPage.createAccountClick();
         Assert.assertEquals(loginPage.accountCreatedMessage(),"Account Created!","Message is wrong,please check!");
         loginPage.clickContinueButton();
-        Assert.assertEquals(loginPage.actualLoggedInUserName(), expectedUser, "Logged-in username is incorrect!");
+        Assert.assertEquals(loginPage.actualLoggedInUserName(), expectedUser, "Logged-in username is incorrect, please check!");
         ConsoleReporter.log("User is :"+ expectedUser);
 
 

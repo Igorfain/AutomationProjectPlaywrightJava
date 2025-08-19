@@ -4,6 +4,7 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import automationexercise.com.pages.LoginPage;
 import org.testng.Assert;
+import saucedemo.com.infra.ConsoleReporter;
 
 public class LoginSteps {
 
@@ -48,7 +49,7 @@ public class LoginSteps {
 
     @Step("Register New User")
     public void registerNewUser(String genderType,String day, String month, String year,String state,String countryValue) {
-        loginPage.signInUserNameInsert();
+        String expectedUser = loginPage.signInUserNameInsert();
         loginPage.signInEmailInsert();
         loginPage.clickSignButton();
         loginPage.selectRadioButton(genderType);
@@ -66,6 +67,11 @@ public class LoginSteps {
         loginPage.mobileNumberInsert();
         loginPage.createAccountClick();
         Assert.assertEquals(loginPage.accountCreatedMessage(),"Account Created!","Message is wrong,please check!");
+        loginPage.clickContinueButton();
+        Assert.assertEquals(loginPage.actualLoggedInUserName(), expectedUser, "Logged-in username is incorrect!");
+        ConsoleReporter.log("User is :"+ expectedUser);
+
+
     }
 }
 

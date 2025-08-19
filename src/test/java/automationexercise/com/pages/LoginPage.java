@@ -32,6 +32,7 @@ public class LoginPage extends BasePage {
     private final Locator createAccountButton = page.locator("button[data-qa='create-account']");
     private final Locator addressInput = page.locator("[data-qa='address']");
     private final Locator accountCreatedMessageLocator  = page.locator("[data-qa='account-created']");
+    private final Locator continueButton  = page.locator("[data-qa='continue-button']");
 
     private ActionBot actionBot;
 
@@ -64,8 +65,14 @@ public class LoginPage extends BasePage {
         Assert.assertEquals(actualLoginErrorText,referenceText);
     }
 
-    public void signInUserNameInsert() {
-        actionBot.fill(signInUserNameInput, "test_user" + generateRandomPassword(4));
+    public String signInUserNameInsert() {
+        String expectedUser = "test_user" + generateRandomPassword(4);
+        actionBot.fill(signInUserNameInput, expectedUser);
+        return expectedUser;
+    }
+
+    public String actualLoggedInUserName() {
+        return page.locator("li b").textContent(); // извлекаем только имя
     }
 
     public void signInEmailInsert(){
@@ -139,6 +146,10 @@ public class LoginPage extends BasePage {
     public String accountCreatedMessage(){
        var accountCreatedMessage = actionBot.getText(accountCreatedMessageLocator );
        return accountCreatedMessage;
+    }
+
+    public void clickContinueButton(){
+        actionBot.click(continueButton);
     }
 
     public static String generateRandomEmail() {

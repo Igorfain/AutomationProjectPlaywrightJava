@@ -2,7 +2,6 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Устанавливаем OpenJDK 17 и необходимые зависимости для Playwright + Allure
 RUN apt-get update && \
     apt-get install -y \
         openjdk-17-jdk \

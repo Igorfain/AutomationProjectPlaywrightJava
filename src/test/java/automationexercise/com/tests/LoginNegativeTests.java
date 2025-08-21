@@ -16,12 +16,10 @@ public class LoginNegativeTests extends BaseTests {
 
     @Test(description = "Verify login with invalid credentials")
     public void testLoginWithInvalidCredentials() {
-        //loginSteps = new LoginSteps(page);
         //ConsoleReporter.log("Step 1 - Attempt login with invalid credentials");
         String invalidUsername = "invalidUser@email.com";
         String invalidPassword = "invalidPass";
         loginSteps.invalidLogin(invalidUsername, invalidPassword);
-
        // ConsoleReporter.log("Step 2 - Verify error message is displayed");
         String referenceText = "Your email or password is incorrect!";
         loginSteps.verifyErrorMessage(referenceText);

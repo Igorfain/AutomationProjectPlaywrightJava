@@ -1,7 +1,6 @@
 package automationexercise.com.tests;
 
 import com.microsoft.playwright.*;
-//import io.qameta.allure.Step;
 import io.qameta.allure.Attachment;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -30,28 +29,35 @@ public abstract class BaseTests {
 
     @BeforeMethod
     public void setUp() {
-        boolean headless = true;
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
+
+        boolean headless = Boolean.parseBoolean(config.getOrDefault("headless", "true").toString());
+        int slowMo = Integer.parseInt(config.getOrDefault("slowMo", "0").toString());
+        int timeout = Integer.parseInt(config.getOrDefault("timeout", "10000").toString());
+        int width = Integer.parseInt(config.getOrDefault("viewportWidth", "1920").toString());
+        int height = Integer.parseInt(config.getOrDefault("viewportHeight", "1080").toString());
+
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless).setSlowMo(500));
-        BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
-        context.setDefaultTimeout(10000);
+        browser = playwright.chromium().launch(
+                new BrowserType.LaunchOptions()
+                        .setHeadless(headless)
+                        .setSlowMo(slowMo)
+        );
+
+        BrowserContext context = browser.newContext(
+                new Browser.NewContextOptions()
+                        .setViewportSize(width, height)
+        );
+
+        context.setDefaultTimeout(timeout);
         page = context.newPage();
         page.navigate(url);
 
         if (doDefaultLogin()) {
-            LoginSteps loginSteps = new LoginSteps(page);
-            loginSteps.login(username, password);
+            new LoginSteps(page).login(username, password);
         }
     }
-
-    //@Step("Navigate to the URL and perform default login")
-   // public void navigateToUrlAndPerformDefaultLogin() {
-   //     page.navigate(url);
-    //    LoginSteps loginSteps = new LoginSteps(page);
-    //    loginSteps.login(username, password);
- //   }
 
     @AfterMethod
     public void tearDown(ITestResult result) {

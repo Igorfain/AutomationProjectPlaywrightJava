@@ -23,9 +23,9 @@ public abstract class BaseTest {
 
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
-
+        boolean headless = true;
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();

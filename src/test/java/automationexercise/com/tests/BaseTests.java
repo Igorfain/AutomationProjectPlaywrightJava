@@ -30,11 +30,11 @@ public abstract class BaseTests {
 
     @BeforeMethod
     public void setUp() {
-
+        boolean headless = true;
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless).setSlowMo(500));
         BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context.setDefaultTimeout(10000);
         page = context.newPage();

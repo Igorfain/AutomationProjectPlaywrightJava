@@ -1,8 +1,16 @@
 {
   "url": "https://automationexercise.com/login",
-  "_comment 3": "Credentials for login",
+
+  "_comment 1": "Credentials for login",
   "username": "igiayehu@gmail.com",
   "password": "Test12345",
-  "invalidUsername":"invalidUser",
-  "invalidPassword" :"invalidPass"
+  "invalidUsername": "invalidUser",
+  "invalidPassword": "invalidPass",
+
+  "_comment 2": "Browser settings",
+  "headless": true,
+  "slowMo": 500,
+  "timeout": 10000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080
 }

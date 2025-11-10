@@ -5,6 +5,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.SelectOption;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import java.nio.file.Path;
 
 public class ActionBot {
     private final Page page;
@@ -188,5 +189,16 @@ public class ActionBot {
     public void selectDropdownByValue(Locator locator, String value) {
         locator.selectOption(value);
     }
+
+    /**
+     * Uploads a file to the given input element.
+     *
+     * @param locator Playwright Locator of the file input element
+     * @param filePath Path to the file to upload
+     */
+    public void setInputFiles(Locator locator, Path filePath) {
+        locator.setInputFiles(filePath);
+    }
+
 
 }

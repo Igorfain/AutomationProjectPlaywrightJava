@@ -3,7 +3,6 @@ package automationexercise.com.tests;
 import automationexercise.com.infra.ConsoleReporter;
 import automationexercise.com.steps.ContactUsSteps;
 import automationexercise.com.steps.MainPageSteps;
-import com.google.errorprone.annotations.Var;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

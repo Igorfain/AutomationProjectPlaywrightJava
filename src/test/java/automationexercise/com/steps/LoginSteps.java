@@ -17,18 +17,20 @@ public class LoginSteps {
     @Step("Login")
     public void login(String username, String password) {
         Allure.step("Enter credentials and login", () -> {
-            loginPage.enterUsername(username);
-            loginPage.enterPassword(password);
-            loginPage.clickLoginButton();
+            loginPage
+                    .enterUsername(username)
+                    .enterPassword(password)
+                    .clickLoginButton();
         });
     }
 
     @Step("Invalid Login")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
         Allure.step("Attempt login with invalid credentials", () -> {
-            loginPage.enterUsername(invalidUsername);
-            loginPage.enterPassword(invalidPassword);
-            loginPage.clickLoginButton();
+            loginPage
+                    .enterUsername(invalidUsername)
+                    .enterPassword(invalidPassword)
+                    .clickLoginButton();
         });
     }
 
@@ -50,22 +52,24 @@ public class LoginSteps {
     @Step("Register New User")
     public void registerNewUser(String genderType,String day, String month, String year,String state,String countryValue) {
         String expectedUser = loginPage.signInUserNameInsert();
-        loginPage.signInEmailInsert();
-        loginPage.clickSignButton();
-        loginPage.selectRadioButton(genderType);
-        loginPage.signUpPasswordInsert();
-        loginPage.dateOfBirthSelect(day,month,year);
-        loginPage.selectOptionalCheckboxes();
-        loginPage.firstNameInsert();
-        loginPage.lastNameInsert();
-        loginPage.addressInsert();
-        loginPage.scrollDownToElement();
-        loginPage.stateInsert(state);
-        loginPage.cityInsert();
-        loginPage.selectCountry(countryValue);
-        loginPage.zipcodeInsert();
-        loginPage.mobileNumberInsert();
-        loginPage.createAccountClick();
+        loginPage
+                .signInEmailInsert()
+                .clickSignButton()
+                .selectRadioButton(genderType)
+                .signUpPasswordInsert()
+                .dateOfBirthSelect(day, month, year)
+                .selectOptionalCheckboxes()
+                .firstNameInsert()
+                .lastNameInsert()
+                .addressInsert()
+                .scrollDownToElement()
+                .stateInsert(state)
+                .cityInsert()
+                .selectCountry(countryValue)
+                .zipcodeInsert()
+                .mobileNumberInsert()
+                .createAccountClick();
+
         Assert.assertEquals(loginPage.accountCreatedMessage(),"Account Created!","Message is wrong,please check!");
         loginPage.clickContinueButton();
         Assert.assertEquals(loginPage.actualLoggedInUserName(), expectedUser, "Logged-in username is incorrect, please check!");

@@ -41,21 +41,26 @@ public class LoginPage extends BasePage {
         this.actionBot = new ActionBot(page); // Instantiate the ActionBot
     }
 
-    public void enterUsername(String username) {
+    public LoginPage enterUsername(String username) {
         actionBot.fill(usernameInput, username);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
         actionBot.fill(passwordInput, password);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public LoginPage clickLoginButton() {
         actionBot.click(loginButton);
+        return this;
     }
 
-    public void clickLogoutButton() {
+    public LoginPage clickLogoutButton() {
         actionBot.click(logoutButton);
+        return this;
     }
+
 
     public String getErrorMessage() {
         return actionBot.getText(incorrectLoginMessage);
@@ -72,76 +77,92 @@ public class LoginPage extends BasePage {
     }
 
     public String actualLoggedInUserName() {
-        return page.locator("li b").textContent(); // извлекаем только имя
+        return page.locator("li b").textContent();
     }
 
-    public void signInEmailInsert(){
+    public LoginPage signInEmailInsert() {
         actionBot.fill(signInEmailInput, generateRandomEmail());
+        return this;
     }
 
-    public void clickSignButton(){
+    public LoginPage clickSignButton() {
         actionBot.click(signUpButton);
+        return this;
     }
 
-    public void selectRadioButton(String genderType){
+    public LoginPage selectRadioButton(String genderType) {
         actionBot.selectRadioButton(page.locator(genderType));
+        return this;
     }
 
-    public void signUpPasswordInsert (){
+    public LoginPage signUpPasswordInsert() {
         actionBot.fill(signUpPasswordInput, generateRandomPassword(4));
+        return this;
     }
 
-    public void dateOfBirthSelect (String day, String month, String year){
+    public LoginPage dateOfBirthSelect(String day, String month, String year) {
         actionBot.selectOptionByValue(daySelect, day);
         actionBot.selectOptionByText(monthSelect, month);
         actionBot.selectOptionByValue(yearSelect, year);
+        return this;
     }
 
-    public void selectOptionalCheckboxes(){
+    public LoginPage selectOptionalCheckboxes() {
         actionBot.selectCheckbox(page.locator("#newsletter"));
         actionBot.selectCheckbox(page.locator("#optin"));
+        return this;
     }
 
-    public void firstNameInsert (){
+    public LoginPage firstNameInsert() {
         actionBot.fill(firstNameInput, "test_username" + generateRandomPassword(4));
+        return this;
     }
 
-    public void lastNameInsert (){
+    public LoginPage lastNameInsert() {
         actionBot.fill(lastNameInput, "test_lastname" + generateRandomPassword(4));
+        return this;
     }
 
-    public void addressInsert (){
-        actionBot.fill(addressInput,"Bla Bla Bla");
+    public LoginPage addressInsert() {
+        actionBot.fill(addressInput, "Bla Bla Bla");
+        return this;
     }
 
-    public void scrollDownToElement(){
+    public LoginPage scrollDownToElement() {
         actionBot.scrollToElement(cityInput);
+        return this;
     }
 
-    public void selectCountry (String countryValue){
+    public LoginPage selectCountry(String countryValue) {
         actionBot.selectDropdownByLabel(countrySelect, countryValue);
-
+        return this;
     }
 
-    public void stateInsert(String state){
-        actionBot.fill(stateInput,state);
+    public LoginPage stateInsert(String state) {
+        actionBot.fill(stateInput, state);
+        return this;
     }
 
-    public void cityInsert(){
-        actionBot.fill(cityInput,"Sderot");
+    public LoginPage cityInsert() {
+        actionBot.fill(cityInput, "Sderot");
+        return this;
     }
 
-    public void zipcodeInsert (){
-        actionBot.fill(zipCodeInput,"00000000");
+    public LoginPage zipcodeInsert() {
+        actionBot.fill(zipCodeInput, "00000000");
+        return this;
     }
 
-    public void mobileNumberInsert (){
-        actionBot.fill(mobileNumberInput,"054000000");
+    public LoginPage mobileNumberInsert() {
+        actionBot.fill(mobileNumberInput, "054000000");
+        return this;
     }
 
-    public void createAccountClick (){
+    public LoginPage createAccountClick() {
         actionBot.click(createAccountButton);
+        return this;
     }
+
 
     public String accountCreatedMessage(){
        var accountCreatedMessage = actionBot.getText(accountCreatedMessageLocator );

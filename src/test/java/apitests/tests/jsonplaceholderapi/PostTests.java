@@ -1,4 +1,4 @@
-package tests;
+package apitests.tests.jsonplaceholderapi;
 
 import apitests.BaseTest;
 import apitests.services.ApiService;

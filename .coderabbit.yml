@@ -1,4 +1,6 @@
-review:
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+general:
   style: concise
   diagrams: false
   poem: false

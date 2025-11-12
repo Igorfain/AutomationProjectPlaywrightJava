@@ -1,44 +1,59 @@
 package apitests.helpers;
 
-import io.restassured.response.Response;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 public class ApiRequestHelper {
 
-    public Response sendGetRequest(String endpoint) {
-        return RestAssured.given().get(endpoint);
+    public Response sendGetRequest(String baseUri, String endpoint) {
+        return RestAssured
+                .given()
+                .baseUri(baseUri)
+                .log().all()
+                .get(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
     }
 
-    public static Response sendPostRequest(String endpoint, String requestBody) {
-        return RestAssured.given()
+    public Response sendPostRequest(String baseUri, String endpoint, String body) {
+        return RestAssured
+                .given()
+                .baseUri(baseUri)
                 .header("Content-Type", "application/json")
-                .body(requestBody)
-                .post(endpoint);
+                .body(body)
+                .log().all()
+                .post(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
     }
 
-    public Response sendPutRequest(String endpoint, String requestBody) {
-        return RestAssured.given()
+    public Response sendPutRequest(String baseUri, String endpoint, String body) {
+        return RestAssured
+                .given()
+                .baseUri(baseUri)
                 .header("Content-Type", "application/json")
-                .body(requestBody)
-                .put(endpoint);
+                .body(body)
+                .log().all()
+                .put(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
     }
 
-    public Response sendDeleteRequest(String endpoint) {
-        return RestAssured.given().delete(endpoint);
+    public Response sendDeleteRequest(String baseUri, String endpoint) {
+        return RestAssured
+                .given()
+                .baseUri(baseUri)
+                .log().all()
+                .delete(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
     }
-
-    public Response sendGetRequestWithAuth(String endpoint, String token) {
-        return RestAssured.given()
-                .header("Authorization", "Bearer " + token)
-                .get(endpoint);
-    }
-
-    public Response sendPostRequestWithAuth(String endpoint, String token, String requestBody) {
-        return RestAssured.given()
-                .header("Authorization", "Bearer " + token)
-                .header("Content-Type", "application/json")
-                .body(requestBody)
-                .post(endpoint);
-    }
-
 }

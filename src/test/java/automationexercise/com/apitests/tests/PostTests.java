@@ -1,40 +1,31 @@
 package automationexercise.com.apitests.tests;
 
-import apitests.BaseTest;
-import apitests.services.ApiService;
-import apitests.utils.JsonUtils;
+import automationexercise.com.apitests.BaseTest;
 import automationexercise.com.apitests.services.Endpoints;
-import io.restassured.RestAssured;
+import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PostTests extends BaseTest {
 
-    private final ApiService apiService = new ApiService();
+    private final ApiRequestHelper apiRequestHelper = new ApiRequestHelper();
 
     @Test
     public void testSearchProduct() {
-        // Define API endpoint
-        String apiUrl = "https://automationexercise.com/api/searchProduct";
+        // Send POST request to search for a product
+        Response response = apiRequestHelper.sendPostFormRequest(
+                AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT,
+                "search_product",
+                "Men Tshirt"
+        );
 
-        // Send POST request with the required parameter
-        Response response = RestAssured.given()
-                .contentType("application/x-www-form-urlencoded")
-                .formParam("search_product", "tshirt")
-                .log().all() // Log the request details
-                .post(apiUrl);
+        // Validate response
+        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
+        Assert.assertTrue(response.getBody().asString().contains("Men Tshirt"),
+                "Response body should contain 'Men Tshirt'");
 
-        // Log the response details
-        System.out.println("Response Status Code: " + response.getStatusCode());
-        System.out.println("Response Headers: " + response.getHeaders());
-        System.out.println("Response Body: " + response.getBody().asString());
-
-        // Validate response status code
-        Assert.assertEquals(response.getStatusCode(), 200, "Expected status code is 200.");
-
-        // Validate response body contains the searched product
-        String responseBody = response.getBody().asString();
-        Assert.assertTrue(responseBody.contains("tshirt"), "Response should contain 'tshirt'.");
+        // Optional debug output
+        System.out.println("Response Body:\n" + response.getBody().asString());
     }
 }

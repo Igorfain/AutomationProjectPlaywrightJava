@@ -9,6 +9,8 @@ public class Endpoints {
     public static final String REGISTER_USER = BASE_API + "/registerUser";
     public static final String LOGIN_USER = BASE_API + "/login";
     public static final String DELETE_USER_ACCOUNT = BASE_API + "/deleteAccount";
+    public static final String VERIFY_LOGIN = BASE_API + "/verifyLogin";
+
 
     // Product-related endpoints
     public static final String GET_ALL_PRODUCTS = BASE_API + "/productsList";

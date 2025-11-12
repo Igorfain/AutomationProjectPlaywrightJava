@@ -3,7 +3,7 @@
 
     <test name="API Tests Suite">
         <classes>
-            <class name="apitests.tests.UserTests" />
+            <class name="apitests.tests.jsonplaceholderapi.UserTests" />
             <!-- Add more API test classes as needed -->
         </classes>
     </test>

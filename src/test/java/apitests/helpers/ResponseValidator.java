@@ -65,7 +65,6 @@ public class ResponseValidator {
     }
 
     // For FakeRestApi
-
     public void validateBookNotFoundResponse(Response response) {
         System.out.println("Get Book Response: " + response.getBody().asString());
         Assert.assertEquals(response.getStatusCode(), 404, "Expected status code 404 for non-existent book");

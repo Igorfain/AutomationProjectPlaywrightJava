@@ -77,4 +77,19 @@ public class ApiRequestHelper {
                 .extract()
                 .response();
     }
+
+    /**
+     * Sends a PUT request with form data (key-value pairs).
+     */
+    public Response sendPutRequestWithFormData(String endpoint, Map<String, String> formData) {
+        return RestAssured.given()
+                .log().all()
+                .contentType("application/x-www-form-urlencoded")
+                .formParams(formData)
+                .put(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
 }

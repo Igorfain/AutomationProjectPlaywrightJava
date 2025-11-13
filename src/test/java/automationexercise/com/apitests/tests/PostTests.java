@@ -4,15 +4,11 @@ import automationexercise.com.apitests.BaseTest;
 import automationexercise.com.apitests.services.Endpoints;
 import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.utils.ConfigPaths;
-import io.qameta.allure.Owner;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.nio.file.Files;

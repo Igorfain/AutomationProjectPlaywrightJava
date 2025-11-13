@@ -41,7 +41,7 @@ public class PutTests extends BaseTest {
         Map<String, String> formData = new HashMap<>();
         formData.put("email", email);
         formData.put("password", password);
-        formData.put("name", "Igor Updated");
+        formData.put("name", "TestUser");
         formData.put("title", "Mr");
         formData.put("birth_date", "10");
         formData.put("birth_month", "January");

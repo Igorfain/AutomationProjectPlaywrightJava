@@ -23,9 +23,9 @@ public class RegistrationTests extends BaseTests {
     public void registerNewUser() {
         ConsoleReporter.log("Verify new user registration");
         var genderType= "#id_gender1";
-        var day = "15";
+        var day = "12";
         var month = "June";
-        var year = "1991";
+        var year = "1992";
         var state = "South";
         var countryValue ="Israel";
         loginSteps.registerNewUser(genderType,day,month,year,state,countryValue);

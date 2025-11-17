@@ -1,7 +1,9 @@
 package saucedemo.com.tests;
 
 import com.microsoft.playwright.*;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
+import io.qameta.allure.testng.Tag;
 import org.testng.annotations.*;
 import saucedemo.com.steps.LoginSteps;
 import saucedemo.com.utils.ConfigReader;
@@ -9,6 +11,8 @@ import saucedemo.com.utils.ConfigPaths;
 
 import java.util.Map;
 
+@Epic("UI Tests")
+@Tag("UI Tests")
 public abstract class BaseTest {
     protected Playwright playwright;
     protected Browser browser;

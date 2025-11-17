@@ -7,8 +7,8 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeClass;
 
-@Epic("API")
-@Tag("API")
+@Epic("API Tests")
+@Tag("API Tests")
 public abstract class BaseTest {
 
     protected final String AUTOMATION_EXERCISE_URI = "https://automationexercise.com";

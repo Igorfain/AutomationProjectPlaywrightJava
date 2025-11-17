@@ -6,7 +6,6 @@ import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.utils.ConfigPaths;
 import com.google.gson.Gson;
 import io.qameta.allure.*;
-import io.qameta.allure.testng.Tag;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -40,7 +39,6 @@ public class PostTests extends BaseTest {
 
     @Test(description = "Search Product using keyword 'Men Tshirt'")
     @Story("Positive Test - Search for existing product")
-    @Tag("API")
     @Owner("Igor")
     public void testSearchProduct() {
         Response response = apiRequestHelper.sendPostFormRequest(AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT, "search_product", "Men Tshirt");
@@ -52,7 +50,6 @@ public class PostTests extends BaseTest {
 
     @Test(description = "Verify Login with valid email and password")
     @Story("Positive Test - Verify existing user login")
-    @Tag("API")
     @Owner("Igor")
     public void testVerifyLogin() {
         Map<String, String> formData = new HashMap<>();
@@ -67,11 +64,9 @@ public class PostTests extends BaseTest {
 
     @Test(description = "POST To Search Product without search_product parameter")
     @Story("API Validation")
-    @Tag("API")
     @Owner("Igor")
     public void testValidateResponseCodeFromBody() {
 
-        // 1. Send POST request without parameter
         Response response = apiRequestHelper.sendPostFormRequest(
                 AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT,
                 "",

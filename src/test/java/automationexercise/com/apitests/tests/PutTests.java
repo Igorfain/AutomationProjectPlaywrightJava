@@ -5,6 +5,7 @@ import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.apitests.services.Endpoints;
 import automationexercise.com.utils.ConfigPaths;
 import io.qameta.allure.*;
+import io.qameta.allure.testng.Tag;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -35,7 +36,7 @@ public class PutTests extends BaseTest {
 
     @Test(description = "Update user account details")
     @Story("Positive Test - Update existing user account")
-    @Severity(SeverityLevel.CRITICAL)
+    @Tag("API")
     @Owner("Igor")
     public void testUpdateUserAccount() {
         Map<String, String> formData = new HashMap<>();

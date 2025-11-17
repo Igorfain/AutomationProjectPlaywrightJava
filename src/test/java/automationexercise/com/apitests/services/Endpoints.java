@@ -12,8 +12,6 @@ public class Endpoints {
     public static final String VERIFY_LOGIN = BASE_API + "/verifyLogin";
     public static final String UPDATE_ACCOUNT = BASE_API +"/updateAccount";
 
-
-
     // Product-related endpoints
     public static final String GET_ALL_PRODUCTS = BASE_API + "/productsList";
     public static final String GET_ALL_BRANDS = "/api/brandsList";

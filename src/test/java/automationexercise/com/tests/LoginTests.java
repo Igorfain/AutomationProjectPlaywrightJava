@@ -20,7 +20,7 @@ public class LoginTests extends BaseTests {
     @Test(description = "Verify login ")
     public void testLogin() {
         ConsoleReporter.log("Step 1 - Verify login in main page");
-        String expectedUserText = "TestUser";
+        String expectedUserText = "AutotestUser";
         mainPageSteps.verifyLoggedInUser(expectedUserText);
     }
 

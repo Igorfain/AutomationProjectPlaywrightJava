@@ -7,9 +7,16 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeClass;
 
+import apitests.config.ApiMockConfig;
+import apitests.mocks.MockService;
+
+
 @Epic("API Tests")
 @Tag("API Tests")
 public abstract class BaseTest {
+
+    protected ApiMockConfig apiConfig;
+    protected MockService mock;
 
     protected final String JSON_PLACEHOLDER_URI = "https://jsonplaceholder.typicode.com";
     protected final String FAKE_REST_API_URI = "https://fakerestapi.azurewebsites.net";
@@ -23,5 +30,7 @@ public abstract class BaseTest {
         // Optional default config (timeouts, encodings, etc.)
         RestAssured.useRelaxedHTTPSValidation();
 
+        apiConfig = new ApiMockConfig();
+        mock = new MockService(apiConfig.getMockUrl());
     }
 }

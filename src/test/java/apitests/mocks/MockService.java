@@ -22,7 +22,6 @@ public class MockService {
                 .response();
     }
 
-    // 🔥 универсальный GET
     public Response get(String path) {
         return RestAssured
                 .given()
@@ -60,7 +59,6 @@ public class MockService {
                 .response();
     }
 
-    // 🔥 универсальный DELETE
     public Response delete(String path) {
         return RestAssured
                 .given()

@@ -6,10 +6,10 @@ import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import apitests.config.ApiMockConfig;
 import apitests.mocks.MockService;
-
 
 @Epic("API Tests")
 @Tag("API Tests")
@@ -24,13 +24,19 @@ public abstract class BaseTest {
     @BeforeClass
     public void setup() {
 
-        // Enable request/response logging globally
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-
-        // Optional default config (timeouts, encodings, etc.)
         RestAssured.useRelaxedHTTPSValidation();
 
         apiConfig = new ApiMockConfig();
         mock = new MockService(apiConfig.getMockUrl());
+    }
+
+    @BeforeMethod
+    public void resetWiremockScenario() {
+        RestAssured
+                .given()
+                .post(apiConfig.getMockUrl() + "/__admin/scenarios/reset")
+                .then()
+                .statusCode(200);
     }
 }

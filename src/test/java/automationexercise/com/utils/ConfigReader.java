@@ -10,8 +10,10 @@ import java.util.Map;
 
 public class ConfigReader {
 
-
-    private static final Dotenv dotenv = Dotenv.load();
+    // Added ignoreIfMissing() to allow execution in environments without a .env file (like Jenkins)
+    private static final Dotenv dotenv = Dotenv.configure()
+            .ignoreIfMissing()
+            .load();
 
     public static Map<String, Object> readConfigFile(String filePath) {
         try {
@@ -29,6 +31,8 @@ public class ConfigReader {
     }
 
     public static String getEnv(String key) {
-        return dotenv.get(key);
+        // Check .env first, then fallback to System Environment variables (Jenkins Credentials)
+        String value = dotenv.get(key);
+        return (value != null) ? value : System.getenv(key);
     }
 }

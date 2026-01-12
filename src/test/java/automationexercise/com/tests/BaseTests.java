@@ -25,6 +25,8 @@ public abstract class BaseTests {
     protected String url;
     protected String username;
     protected String password;
+    protected String invalidUsername;
+    protected String invalidPassword;
 
     protected boolean doDefaultLogin() {
         return true;
@@ -65,9 +67,9 @@ public abstract class BaseTests {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (!result.isSuccess()) { // Check if the test failed
+        if (!result.isSuccess()) {
             System.out.println("Test failed: " + result.getName());
-            attachScreenshot(); // Attach screenshot to Allure report
+            attachScreenshot();
         }
 
         // Clean up resources
@@ -97,11 +99,15 @@ public abstract class BaseTests {
 
     private void loadCredentialsFromConfig(Map<String, Object> config) {
         url = (String) config.get("url");
-        username = (String) config.get("username");
-        password = (String) config.get("password");
+        // Valid credentials
+        username = ConfigReader.getEnv("LOGIN_USERNAME");
+        password = ConfigReader.getEnv("LOGIN_PASSWORD");
+        // Invalid credentials for negative tests
+        invalidUsername = ConfigReader.getEnv("INVALID_USERNAME");
+        invalidPassword = ConfigReader.getEnv("INVALID_PASSWORD");
 
         if (url == null || username == null || password == null) {
-            throw new RuntimeException("Missing required credentials or URL in the configuration file.");
+            throw new RuntimeException("Missing required credentials or URL. Check MainConfig.json and your .env file.");
         }
     }
 }

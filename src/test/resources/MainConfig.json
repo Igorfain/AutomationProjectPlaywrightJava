@@ -1,13 +1,7 @@
 {
   "url": "https://automationexercise.com/login",
 
-  "_comment 1": "Credentials for login",
-  "username": "autotestlabmail@gmail.com",
-  "password": "Test12345",
-  "invalidUsername": "invalidUser",
-  "invalidPassword": "invalidPass",
-
-  "_comment 2": "Browser settings",
+  "Title 1": "Browser settings",
   "headless": true,
   "slowMo": 500,
   "timeout": 10000,

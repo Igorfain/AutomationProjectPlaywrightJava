@@ -4,6 +4,7 @@ import automationexercise.com.apitests.BaseTest;
 import automationexercise.com.apitests.services.Endpoints;
 import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.utils.ConfigPaths;
+import automationexercise.com.utils.ConfigReader;
 import com.google.gson.Gson;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
@@ -32,8 +33,8 @@ public class PostTests extends BaseTest {
                 new String(Files.readAllBytes(Paths.get(ConfigPaths.MAIN_CONFIG_PATH)))
         );
 
-        email = config.getString("username");
-        password = config.getString("password");
+        email = ConfigReader.getEnv("LOGIN_USERNAME");
+        password = ConfigReader.getEnv("LOGIN_PASSWORD");
 
     }
 

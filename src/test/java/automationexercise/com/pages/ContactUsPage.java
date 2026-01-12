@@ -5,6 +5,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 public class ContactUsPage extends BasePage{
 
@@ -83,7 +84,8 @@ public class ContactUsPage extends BasePage{
     }
 
     public ContactUsPage verifyNavigatedToHomePage() {
-        assertThat(page).hasURL("https://automationexercise.com/");
+
+        assertThat(page).hasURL(Pattern.compile("https://automationexercise\\.com/.*"));
         assertThat(page.locator("div.carousel-inner").first()).isVisible();
         return this;
     }

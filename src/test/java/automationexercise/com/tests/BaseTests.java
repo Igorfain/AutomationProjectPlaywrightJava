@@ -58,6 +58,17 @@ public abstract class BaseTests {
 
         context.setDefaultTimeout(timeout);
         page = context.newPage();
+
+        // Block ads before navigation
+        page.route("**/*google*", route -> {
+            String url = route.request().url();
+            if (url.contains("googlesyndication") || url.contains("adservice.google")) {
+                route.abort();
+            } else {
+                route.resume();
+            }
+        });
+
         page.navigate(url);
 
         if (doDefaultLogin()) {

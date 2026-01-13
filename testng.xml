@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Combined UI Suite" parallel="classes" thread-count="4">
+<suite name="Full Project Suite" parallel="classes" thread-count="4">
 
-    <test name="SauceDemo Tests">
-        <classes>
-            <class name="saucedemo.com.tests.PlaywrightTests"/>
-        </classes>
-    </test>
-
-    <test name="Automation Exercise Tests">
+    <test name="All Automation Tests">
         <packages>
+            <package name="apitests.tests"/>
+            <package name="automationexercise.com.apitests.tests"/>
             <package name="automationexercise.com.tests"/>
+            <package name="saucedemo.com.tests"/>
         </packages>
     </test>
 

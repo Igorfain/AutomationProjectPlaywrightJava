@@ -2,9 +2,17 @@
   "_comment 1": "This is the main configuration file for the project.",
   "_comment 2": "The URL of the application under test is provided below.",
   "url": "https://www.saucedemo.com/",
+
+  "headless": false,
+  "slowMo": 200,
+  "timeout": 20000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+
   "_comment 3": "Credentials for STANDARD user are provided below.",
   "username": "standard_user",
   "password": "secret_sauce",
+
   "_comment 4": "Credentials for PROBLEM user are provided below.",
   "problem_user": "problem_user",
   "problem_user_password": "secret_sauce"

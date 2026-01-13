@@ -40,7 +40,7 @@ public abstract class BaseTests {
 
         boolean headless = Boolean.parseBoolean(config.getOrDefault("headless", "true").toString());
         int slowMo = Integer.parseInt(config.getOrDefault("slowMo", "0").toString());
-        int timeout = Integer.parseInt(config.getOrDefault("timeout", "10000").toString());
+        int timeout = Integer.parseInt(config.getOrDefault("timeout", "20000").toString());
         int width = Integer.parseInt(config.getOrDefault("viewportWidth", "1920").toString());
         int height = Integer.parseInt(config.getOrDefault("viewportHeight", "1080").toString());
 

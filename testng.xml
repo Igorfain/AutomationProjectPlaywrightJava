@@ -1,7 +1,17 @@
-<suite name="Parallel Tests" parallel="methods" thread-count="3">
-    <test name="Test Suite">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Combined UI Suite" parallel="classes" thread-count="4">
+
+    <test name="SauceDemo Tests">
         <classes>
             <class name="saucedemo.com.tests.PlaywrightTests"/>
         </classes>
     </test>
+
+    <test name="Automation Exercise Tests">
+        <packages>
+            <package name="automationexercise.com.tests"/>
+        </packages>
+    </test>
+
 </suite>

@@ -27,11 +27,22 @@ public abstract class BaseTest {
 
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
-        boolean headless = true;
+
+        boolean headless = Boolean.parseBoolean(config.getOrDefault("headless", "true").toString());
+        int slowMo = Integer.parseInt(config.getOrDefault("slowMo", "0").toString());
+        int timeout = Integer.parseInt(config.getOrDefault("timeout", "20000").toString());
+        int width = Integer.parseInt(config.getOrDefault("viewportWidth", "1920").toString());
+        int height = Integer.parseInt(config.getOrDefault("viewportHeight", "1080").toString());
+
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(headless).setSlowMo(500));
-        BrowserContext context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
-        context.setDefaultTimeout(10000);
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
+                .setHeadless(headless)
+                .setSlowMo(slowMo));
+
+        BrowserContext context = browser.newContext(new Browser.NewContextOptions()
+                .setViewportSize(width, height));
+
+        context.setDefaultTimeout(timeout);
         page = context.newPage();
         navigateToUrlAndPerformDefaultLogin();
     }
@@ -42,8 +53,6 @@ public abstract class BaseTest {
         LoginSteps loginSteps = new LoginSteps(page);
         loginSteps.login(username, password);
     }
-
-
 
     @AfterMethod
     public void tearDown() {

@@ -3,7 +3,7 @@
   "_comment 2": "The URL of the application under test is provided below.",
   "url": "https://www.saucedemo.com/",
 
-  "headless": false,
+  "headless": true,
   "slowMo": 200,
   "timeout": 20000,
   "viewportWidth": 1920,

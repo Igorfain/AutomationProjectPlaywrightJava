@@ -5,7 +5,7 @@ import automationexercise.com.steps.MainPageSteps;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class MainPageTests extends BaseTests {
+public class MainPageTests extends BaseTest {
 
     private MainPageSteps mainPageSteps;
     private LoginSteps loginSteps;

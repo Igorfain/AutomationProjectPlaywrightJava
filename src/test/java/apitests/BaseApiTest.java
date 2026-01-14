@@ -13,7 +13,7 @@ import apitests.mocks.MockService;
 
 @Epic("API Tests")
 @Tag("API Tests")
-public abstract class BaseTest {
+public abstract class BaseApiTest {
 
     protected ApiMockConfig apiConfig;
     protected MockService mock;

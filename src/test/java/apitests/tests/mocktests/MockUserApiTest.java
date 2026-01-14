@@ -1,11 +1,11 @@
 package apitests.tests.mocktests;
 
-import apitests.BaseTest;
+import apitests.BaseApiTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class MockUserTest extends BaseTest {
+public class MockUserApiTest extends BaseApiTest {
 
     @Test
     public void createUserTest() {

@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.ConsoleReporter;
 
-public class RegistrationTests extends BaseTests {
+public class RegistrationTests extends BaseTest {
     @Override
     protected boolean doDefaultLogin() { return false; } // без логина
 

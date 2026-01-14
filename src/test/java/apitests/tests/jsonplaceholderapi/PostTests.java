@@ -1,13 +1,13 @@
 package apitests.tests.jsonplaceholderapi;
 
-import apitests.BaseTest;
+import apitests.BaseApiTest;
 import apitests.services.ApiService;
 import apitests.utils.JsonUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PostTests extends BaseTest {
+public class PostTests extends BaseApiTest {
 
     private final ApiService apiService = new ApiService();
 

@@ -84,7 +84,7 @@ public class ActionBot {
      * @param text     Text to type
      */
     public void typeAndPressEnter(String selector, String text) {
-        page.locator(selector).type(text);
+        page.locator(selector).fill(text);
         page.keyboard().press("Enter");
     }
 

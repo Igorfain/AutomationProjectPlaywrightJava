@@ -1,6 +1,6 @@
 package automationexercise.com.apitests.tests;
 
-import automationexercise.com.apitests.BaseTest;
+import automationexercise.com.apitests.BaseApiTest;
 import automationexercise.com.apitests.services.ApiService;
 import automationexercise.com.apitests.services.Endpoints;
 import com.google.gson.Gson;
@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 import java.util.List;
 import java.util.Map;
 
-public class GetTests extends BaseTest {
+public class GetTests extends BaseApiTest {
 
     private final ApiService apiService = new ApiService();
 

@@ -40,7 +40,7 @@ public class ActionBot {
      * @param text    Text to type
      */
     public void typeAndPressEnter(Locator locator, String text) {
-        locator.type(text);
+        locator.fill(text);
         locator.press("Enter");
     }
 

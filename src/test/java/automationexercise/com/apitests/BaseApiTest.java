@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 
 @Epic("API Tests")
 @Tag("API Tests")
-public abstract class BaseTest {
+public abstract class BaseApiTest {
 
     protected final String AUTOMATION_EXERCISE_URI = "https://automationexercise.com";
 

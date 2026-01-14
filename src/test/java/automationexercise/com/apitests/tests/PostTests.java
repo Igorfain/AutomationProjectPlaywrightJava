@@ -1,6 +1,6 @@
 package automationexercise.com.apitests.tests;
 
-import automationexercise.com.apitests.BaseTest;
+import automationexercise.com.apitests.BaseApiTest;
 import automationexercise.com.apitests.services.Endpoints;
 import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.utils.ConfigPaths;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 import static automationexercise.com.apitests.services.Endpoints.VERIFY_LOGIN;
 
-public class PostTests extends BaseTest {
+public class PostTests extends BaseApiTest {
 
     private final ApiRequestHelper apiRequestHelper = new ApiRequestHelper();
 
@@ -29,13 +29,8 @@ public class PostTests extends BaseTest {
 
     @BeforeClass
     public void readConfig() throws IOException {
-        JSONObject config = new JSONObject(
-                new String(Files.readAllBytes(Paths.get(ConfigPaths.MAIN_CONFIG_PATH)))
-        );
-
         email = ConfigReader.getEnv("LOGIN_USERNAME");
         password = ConfigReader.getEnv("LOGIN_PASSWORD");
-
     }
 
     @Test(description = "Search Product using keyword 'Men Tshirt'")
@@ -46,7 +41,6 @@ public class PostTests extends BaseTest {
 
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
         Assert.assertTrue(response.getBody().asString().contains("Men Tshirt"), "Response body should contain 'Men Tshirt'");
-
     }
 
     @Test(description = "Verify Login with valid email and password")
@@ -60,14 +54,12 @@ public class PostTests extends BaseTest {
         Response response = apiRequestHelper.sendPostRequestWithFormData(AUTOMATION_EXERCISE_URI + VERIFY_LOGIN, formData);
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
         Assert.assertTrue(response.getBody().asString().contains("User exists!"), "Response body should contain 'User exists!'");
-
     }
 
     @Test(description = "POST To Search Product without search_product parameter")
     @Story("API Validation")
     @Owner("Igor")
     public void testValidateResponseCodeFromBody() {
-
         Response response = apiRequestHelper.sendPostFormRequest(
                 AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT,
                 "",

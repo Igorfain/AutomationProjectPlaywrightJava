@@ -1,6 +1,6 @@
 package apitests.tests.jsonplaceholderapi;
 
-import apitests.BaseTest;
+import apitests.BaseApiTest;
 import apitests.services.Endpoints;
 import apitests.helpers.ApiRequestHelper;
 import apitests.helpers.ResponseValidator;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static apitests.utils.JsonUtils.createPostRequestBody;
 
-public class UserTests extends BaseTest {
+public class UserTests extends BaseApiTest {
 
     private final ApiRequestHelper apiRequestHelper = new ApiRequestHelper();
     private final ResponseValidator responseValidator = new ResponseValidator();

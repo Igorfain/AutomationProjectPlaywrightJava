@@ -17,7 +17,8 @@ import java.util.Map;
 @Epic("UI Tests")
 @Tag("UI Tests")
 @Listeners({io.qameta.allure.testng.AllureTestNg.class})
-public abstract class BaseTests {
+public abstract class BaseTest {
+
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;

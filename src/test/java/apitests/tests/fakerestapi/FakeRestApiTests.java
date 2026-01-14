@@ -1,12 +1,12 @@
 package apitests.tests.fakerestapi;
 
-import apitests.BaseTest;
+import apitests.BaseApiTest;
 import apitests.helpers.ApiRequestHelper;
 import apitests.helpers.ResponseValidator;
 import apitests.services.Endpoints;
 import org.testng.annotations.Test;
 
-   public class FakeRestApiTests extends BaseTest {
+   public class FakeRestApiTests extends BaseApiTest {
 
     private final ApiRequestHelper apiRequestHelper = new ApiRequestHelper();
     private final ResponseValidator responseValidator = new ResponseValidator();

@@ -1,6 +1,6 @@
 package automationexercise.com.apitests.tests;
 
-import automationexercise.com.apitests.BaseTest;
+import automationexercise.com.apitests.BaseApiTest;
 import automationexercise.com.apitests.helpers.ApiRequestHelper;
 import automationexercise.com.apitests.services.Endpoints;
 import automationexercise.com.utils.ConfigPaths;
@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PutTests extends BaseTest {
+public class PutTests extends BaseApiTest {
 
     private final ApiRequestHelper apiRequestHelper = new ApiRequestHelper();
     private String email;

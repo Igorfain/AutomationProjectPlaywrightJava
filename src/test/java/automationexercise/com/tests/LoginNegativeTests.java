@@ -5,7 +5,7 @@ import automationexercise.com.utils.ConfigReader;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginNegativeTests extends BaseTests {
+public class LoginNegativeTests extends BaseTest {
 
     private LoginSteps loginSteps;
 

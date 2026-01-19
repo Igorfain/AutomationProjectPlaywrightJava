@@ -1,4 +1,4 @@
-package saucedemo.com.tests;
+package saucedemo.com.infra.base;
 
 import com.microsoft.playwright.*;
 import io.qameta.allure.Epic;

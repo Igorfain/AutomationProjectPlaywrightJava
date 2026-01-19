@@ -3,6 +3,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.*;
 import automationexercise.com.infra.actions.ActionBot;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.nio.file.Paths;
 import java.util.regex.Pattern;
@@ -73,6 +74,7 @@ public class ContactUsPage extends BasePage{
     }
 
     public ContactUsPage verifySuccessMessage() {
+        successMessage.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
         assertThat(successMessage).isVisible();
         assertThat(successMessage).hasText("Success! Your details have been submitted successfully.");
         return this;

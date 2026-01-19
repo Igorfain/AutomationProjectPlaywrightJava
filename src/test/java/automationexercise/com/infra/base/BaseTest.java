@@ -1,7 +1,7 @@
 package automationexercise.com.infra.base;
 
 import com.microsoft.playwright.*;
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Epic;
 import io.qameta.allure.testng.Tag;
 import org.testng.ITestResult;
@@ -12,6 +12,7 @@ import automationexercise.com.utils.ConfigReader;
 import automationexercise.com.utils.ConfigPaths;
 import org.testng.annotations.Listeners;
 
+import java.io.ByteArrayInputStream;
 import java.util.Map;
 
 @Epic("UI Tests")
@@ -81,7 +82,7 @@ public abstract class BaseTest {
     public void tearDown(ITestResult result) {
         if (!result.isSuccess()) {
             System.out.println("Test failed: " + result.getName());
-            attachScreenshot();
+            attachScreenshot("Failure Screenshot");
         }
 
         // Clean up resources
@@ -91,16 +92,16 @@ public abstract class BaseTest {
         if (playwright != null) playwright.close();
     }
 
-    @Attachment(value = "Screenshot on Failure", type = "image/png")
-    public byte[] attachScreenshot() {
+    // Using Allure API directly as annotation might require AspectJ weaver
+    public void attachScreenshot(String name) {
         try {
-            if (page != null) {
-                return page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
+            if (page != null && !page.isClosed()) {
+                byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
+                Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
             }
         } catch (Exception e) {
             System.err.println("Failed to capture screenshot: " + e.getMessage());
         }
-        return new byte[0];
     }
 
     private void loadCredentialsFromConfig(Map<String, Object> config) {

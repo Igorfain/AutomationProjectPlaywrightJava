@@ -1,5 +1,6 @@
 package automationexercise.com.tests;
 
+import automationexercise.com.infra.base.BaseTest;
 import automationexercise.com.pages.LoginPage;
 import automationexercise.com.steps.LoginSteps;
 import org.testng.annotations.BeforeMethod;

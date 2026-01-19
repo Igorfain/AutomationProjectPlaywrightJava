@@ -1,4 +1,4 @@
-package automationexercise.com.tests;
+package automationexercise.com.infra.base;
 
 import com.microsoft.playwright.*;
 import io.qameta.allure.Attachment;
@@ -21,6 +21,7 @@ public abstract class BaseTest {
 
     protected Playwright playwright;
     protected Browser browser;
+    protected BrowserContext context;
     protected Page page;
 
     protected String url;
@@ -32,7 +33,6 @@ public abstract class BaseTest {
     protected boolean doDefaultLogin() {
         return true;
     }
-
 
     @BeforeMethod
     public void setUp() {
@@ -52,7 +52,7 @@ public abstract class BaseTest {
                         .setSlowMo(slowMo)
         );
 
-        BrowserContext context = browser.newContext(
+        context = browser.newContext(
                 new Browser.NewContextOptions()
                         .setViewportSize(width, height)
         );
@@ -60,7 +60,7 @@ public abstract class BaseTest {
         context.setDefaultTimeout(timeout);
         page = context.newPage();
 
-        // Block ads before navigation
+        // Block ads
         page.route("**/*google*", route -> {
             String url = route.request().url();
             if (url.contains("googlesyndication") || url.contains("adservice.google")) {
@@ -85,36 +85,28 @@ public abstract class BaseTest {
         }
 
         // Clean up resources
-        if (page != null && !page.isClosed()) {
-            page.close();
-        }
-        if (browser != null) {
-            browser.close();
-        }
-        if (playwright != null) {
-            playwright.close();
-        }
+        if (page != null && !page.isClosed()) page.close();
+        if (context != null) context.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
     }
 
     @Attachment(value = "Screenshot on Failure", type = "image/png")
     public byte[] attachScreenshot() {
         try {
             if (page != null) {
-                // Capture and return screenshot as byte array
                 return page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
             }
         } catch (Exception e) {
             System.err.println("Failed to capture screenshot: " + e.getMessage());
         }
-        return new byte[0]; // Return empty byte array if screenshot fails
+        return new byte[0];
     }
 
     private void loadCredentialsFromConfig(Map<String, Object> config) {
         url = (String) config.get("url");
-        // Valid credentials
         username = ConfigReader.getEnv("LOGIN_USERNAME");
         password = ConfigReader.getEnv("LOGIN_PASSWORD");
-        // Invalid credentials for negative tests
         invalidUsername = ConfigReader.getEnv("INVALID_USERNAME");
         invalidPassword = ConfigReader.getEnv("INVALID_PASSWORD");
 

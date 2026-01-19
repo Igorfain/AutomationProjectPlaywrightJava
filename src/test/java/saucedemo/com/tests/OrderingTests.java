@@ -2,9 +2,10 @@ package saucedemo.com.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.ConsoleReporter;
+import saucedemo.com.infra.base.BaseTest;
 import saucedemo.com.steps.CartPageSteps;
 import saucedemo.com.steps.ProductPageSteps;
-public class OrderingTests extends BaseTest{
+public class OrderingTests extends BaseTest {
 
     private CartPageSteps cartPageSteps;
     private ProductPageSteps productPageSteps;

@@ -3,6 +3,7 @@ package saucedemo.com.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.ConsoleReporter;
+import saucedemo.com.infra.base.BaseTest;
 import saucedemo.com.steps.CartPageSteps;
 import saucedemo.com.steps.LoginSteps;
 import saucedemo.com.steps.ProductPageSteps;

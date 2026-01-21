@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.playwright;
+package automationexercise.com.apitests.playwrightApiTests;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.playwright;
+package automationexercise.com.apitests.playwrightApiTests;
 
 public final class ProductTestData {
 

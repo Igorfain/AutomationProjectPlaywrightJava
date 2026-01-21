@@ -28,7 +28,9 @@ public abstract class BaseTest {
     @BeforeMethod
     public void setUp() {
 
-        dotenv = Dotenv.load();
+        dotenv = Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
 

@@ -29,6 +29,19 @@ public class ActionBot {
      * @param locator Locator of the input field
      * @param text    Text to input
      */
+
+    /**
+     * Types text into an input field character by character with a delay.
+     * Useful when the site has complex JS listeners or form resets.
+     *
+     * @param locator Locator of the input field
+     * @param text    Text to input
+     * @param delay   Delay between key presses in milliseconds
+     */
+    public void type(Locator locator, String text, int delay) {
+        locator.pressSequentially(text, new Locator.PressSequentiallyOptions().setDelay(delay));
+    }
+
     public void fill(Locator locator, String text) {
         locator.fill(text);
     }

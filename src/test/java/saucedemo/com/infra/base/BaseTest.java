@@ -12,7 +12,7 @@ import saucedemo.com.utils.ConfigPaths;
 import java.util.Map;
 
 @Epic("UI Tests")
-@Tag("UI Tests")
+@Tag("Saucedemo")
 public abstract class BaseTest {
     protected Playwright playwright;
     protected Browser browser;

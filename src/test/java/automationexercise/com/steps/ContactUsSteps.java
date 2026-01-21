@@ -51,13 +51,6 @@ public class ContactUsSteps {
         return this;
     }
 
-    @Step("Accept browser alert after submit")
-    public ContactUsSteps acceptAlert() {
-        Allure.step("Accept browser alert after submit");
-        contactUsPage.acceptAlert();
-        return this;
-    }
-
     @Step("Verify success message is visible after form submission")
     public ContactUsSteps verifySuccessMessage() {
         Allure.step("Verify success message is visible after form submission");

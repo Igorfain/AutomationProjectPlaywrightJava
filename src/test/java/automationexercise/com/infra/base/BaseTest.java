@@ -16,7 +16,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Map;
 
 @Epic("UI Tests")
-@Tag("UI Tests")
+@Tag("AutomationExercise")
 @Listeners({io.qameta.allure.testng.AllureTestNg.class})
 public abstract class BaseTest {
 

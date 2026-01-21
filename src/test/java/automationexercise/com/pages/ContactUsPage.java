@@ -38,22 +38,22 @@ public class ContactUsPage extends BasePage{
     }
 
     public ContactUsPage insertName(String name) {
-        actionBot.fill(nameInput, name);
+        actionBot.type(nameInput, name,50);
         return this;
     }
 
     public ContactUsPage insertEmail(String email) {
-        actionBot.fill(emailInput, email);
+        actionBot.type(emailInput, email,50);
         return this;
     }
 
     public ContactUsPage insertSubject(String subject) {
-        actionBot.fill(subjectInput, subject);
+        actionBot.type(subjectInput, subject,50);
         return this;
     }
 
     public ContactUsPage insertMessage(String message) {
-        actionBot.fill(messageInput, message);
+        actionBot.type(messageInput, message,50);
         return this;
     }
 
@@ -65,11 +65,6 @@ public class ContactUsPage extends BasePage{
     public ContactUsPage clickSubmitButton() {
         page.onceDialog(dialog -> dialog.accept());
         page.locator("input[type='submit']").click();
-        return this;
-    }
-
-    public ContactUsPage acceptAlert() {
-        page.onceDialog(dialog -> dialog.accept());
         return this;
     }
 

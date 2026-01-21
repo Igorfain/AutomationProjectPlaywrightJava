@@ -3,7 +3,7 @@
 
   "Title 1": "Browser settings",
   "headless": true,
-  "slowMo": 200,
+  "slowMo": 0,
   "timeout": 20000,
   "viewportWidth": 1920,
   "viewportHeight": 1080

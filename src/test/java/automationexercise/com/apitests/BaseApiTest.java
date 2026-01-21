@@ -7,7 +7,6 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.BeforeClass;
 
-@Epic("API Tests")
 @Epic("AutomationExercise API Tests")
 @Tag("API Tests")
 public abstract class BaseApiTest {

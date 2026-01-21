@@ -15,8 +15,7 @@ import org.testng.annotations.Listeners;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 
-@Epic("UI Tests")
-@Epic("AutomationExercise")
+@Epic("AutomationExercise UI Tests")
 @Tag("AutomationExercise")
 @Listeners({io.qameta.allure.testng.AllureTestNg.class})
 public abstract class BaseTest {

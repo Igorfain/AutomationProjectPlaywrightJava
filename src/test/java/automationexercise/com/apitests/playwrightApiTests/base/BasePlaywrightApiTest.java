@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.playwrightApiTests;
+package automationexercise.com.apitests.playwrightApiTests.base;
 
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;

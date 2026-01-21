@@ -2,7 +2,7 @@
 <suite name="Playwright Automation Suite">
     <test name="Playwright Functional Tests">
         <classes>
-            <class name="saucedemo.com.tests.PlaywrightTests" />
+            <class name="saucedemo.com.tests.ProductFlowTests" />
             <!-- Add more test classes as needed -->
         </classes>
     </test>

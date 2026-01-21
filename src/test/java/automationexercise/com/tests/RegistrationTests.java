@@ -3,9 +3,10 @@ package automationexercise.com.tests;
 import automationexercise.com.infra.base.BaseTest;
 import automationexercise.com.pages.LoginPage;
 import automationexercise.com.steps.LoginSteps;
+import common.infra.ConsoleReporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import saucedemo.com.infra.ConsoleReporter;
+
 
 public class RegistrationTests extends BaseTest {
     @Override
@@ -22,7 +23,6 @@ public class RegistrationTests extends BaseTest {
 
     @Test(description = "Verify new user registration")
     public void registerNewUser() {
-        ConsoleReporter.log("Verify new user registration");
         var genderType= "#id_gender1";
         var day = "17";
         var month = "June";

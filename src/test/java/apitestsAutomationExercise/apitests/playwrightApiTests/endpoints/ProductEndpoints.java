@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.playwrightApiTests.endpoints;
+package apitestsAutomationExercise.apitests.playwrightApiTests.endpoints;
 
 public final class ProductEndpoints {
 

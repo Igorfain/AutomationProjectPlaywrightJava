@@ -1,8 +1,9 @@
-package automationexercise.com.apitests.playwrightApiTests.base;
+package apitestsAutomationExercise.apitests.playwrightApiTests.base;
 
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.Playwright;
+import common.infra.ConsoleReporter;
 import io.qameta.allure.Epic;
 import io.qameta.allure.testng.Tag;
 import org.testng.annotations.AfterClass;
@@ -32,5 +33,21 @@ public abstract class BasePlaywrightApiTest {
     public void tearDownApi() {
         if (requestContext != null) requestContext.dispose();
         if (playwright != null) playwright.close();
+    }
+
+    protected void logTestStep() {
+        var result = org.testng.Reporter.getCurrentTestResult();
+
+        if (result == null) {
+            ConsoleReporter.log("STEP: test started");
+            return;
+        }
+
+        String description = result.getMethod().getDescription();
+        String step = (description != null && !description.isBlank())
+                ? description
+                : result.getMethod().getMethodName();
+
+        ConsoleReporter.log("STEP: " + step);
     }
 }

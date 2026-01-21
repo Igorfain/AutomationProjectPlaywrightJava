@@ -1,8 +1,8 @@
-package automationexercise.com.apitests.tests;
+package apitestsAutomationExercise.apitests.tests;
 
-import automationexercise.com.apitests.BaseApiTest;
-import automationexercise.com.apitests.services.ApiService;
-import automationexercise.com.apitests.services.Endpoints;
+import apitestsAutomationExercise.apitests.BaseApiTest;
+import apitestsAutomationExercise.apitests.services.ApiService;
+import apitestsAutomationExercise.apitests.services.Endpoints;
 import com.google.gson.Gson;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
@@ -21,6 +21,7 @@ public class GetTests extends BaseApiTest {
     @Severity(SeverityLevel.NORMAL)
     @Owner("Igor")
     public void testGetAllProductList() {
+        logTestStep();
         Response response = apiService.sendGetRequest(AUTOMATION_EXERCISE_URI + Endpoints.GET_ALL_PRODUCTS);
         Allure.addAttachment("Response Body", "application/json", response.asString());
 
@@ -38,7 +39,7 @@ public class GetTests extends BaseApiTest {
     @Owner("Igor")
     @Link(name = "API List", url = "https://automationexercise.com/api_list")
     public void testGetAllBrandsList() {
-
+        logTestStep();
         Response response = apiService.sendGetRequest(AUTOMATION_EXERCISE_URI + Endpoints.GET_ALL_BRANDS);
         Assert.assertEquals(response.getStatusCode(), 200);
         Map<String, Object> json = new Gson().fromJson(response.asString(), Map.class);
@@ -52,6 +53,7 @@ public class GetTests extends BaseApiTest {
     @Story("Negative Test - Unsupported Method")
     @Owner("Igor")
     public void testPostToProductsList_NotAllowed() {
+        logTestStep();
         Response response = apiService.sendPostRequest(
                 AUTOMATION_EXERCISE_URI + Endpoints.GET_ALL_PRODUCTS, "{}");
 

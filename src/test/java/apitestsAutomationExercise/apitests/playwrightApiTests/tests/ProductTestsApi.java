@@ -1,9 +1,9 @@
-package automationexercise.com.apitests.playwrightApiTests.tests;
+package apitestsAutomationExercise.apitests.playwrightApiTests.tests;
 
-import automationexercise.com.apitests.playwrightApiTests.base.BasePlaywrightApiTest;
-import automationexercise.com.apitests.playwrightApiTests.assertions.ProductApiAssertions;
-import automationexercise.com.apitests.playwrightApiTests.steps.ProductApiSteps;
-import automationexercise.com.apitests.playwrightApiTests.data.ProductTestData;
+import apitestsAutomationExercise.apitests.playwrightApiTests.base.BasePlaywrightApiTest;
+import apitestsAutomationExercise.apitests.playwrightApiTests.assertions.ProductApiAssertions;
+import apitestsAutomationExercise.apitests.playwrightApiTests.steps.ProductApiSteps;
+import apitestsAutomationExercise.apitests.playwrightApiTests.data.ProductTestData;
 import com.microsoft.playwright.APIResponse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,16 +18,16 @@ public class ProductTestsApi extends BasePlaywrightApiTest {
         productApi = new ProductApiSteps(requestContext);
     }
 
-    @Test(description = "Verify product list using Playwright API")
+    @Test(description = "Verify product list ")
     public void testGetProductsWithPlaywright() {
-        ConsoleReporter.log("STEP: Verify product list using Playwright API");
+        logTestStep();
         APIResponse response = productApi.getProductsList();
         ProductApiAssertions.assertProductsListResponse(response);
     }
 
-    @Test(description = "Verify search product using Playwright API (Form Data)")
+    @Test(description = "Verify search product ")
     public void testSearchProductPlaywright() {
-        ConsoleReporter.log("STEP: Verify search product using Playwright API (Form Data)");
+        logTestStep();
         APIResponse response = productApi.searchProduct(ProductTestData.SEARCH_TSHIRT);
         ProductApiAssertions.assertSearchProductResponse(response);
     }

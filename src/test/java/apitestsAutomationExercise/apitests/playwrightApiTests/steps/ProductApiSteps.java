@@ -1,6 +1,6 @@
-package automationexercise.com.apitests.playwrightApiTests.steps;
+package apitestsAutomationExercise.apitests.playwrightApiTests.steps;
 
-import automationexercise.com.apitests.playwrightApiTests.endpoints.ProductEndpoints;
+import apitestsAutomationExercise.apitests.playwrightApiTests.endpoints.ProductEndpoints;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.FormData;

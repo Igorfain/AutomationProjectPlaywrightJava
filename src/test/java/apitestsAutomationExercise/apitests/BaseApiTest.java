@@ -1,5 +1,6 @@
-package automationexercise.com.apitests;
+package apitestsAutomationExercise.apitests;
 
+import common.infra.ConsoleReporter;
 import io.qameta.allure.Epic;
 import io.qameta.allure.testng.Tag;
 import io.restassured.RestAssured;
@@ -17,5 +18,21 @@ public abstract class BaseApiTest {
     public void setup() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
         RestAssured.useRelaxedHTTPSValidation();
+    }
+
+    protected void logTestStep() {
+        var result = org.testng.Reporter.getCurrentTestResult();
+
+        if (result == null) {
+            ConsoleReporter.log("STEP: test started");
+            return;
+        }
+
+        String description = result.getMethod().getDescription();
+        String step = (description != null && !description.isBlank())
+                ? description
+                : result.getMethod().getMethodName();
+
+        ConsoleReporter.log("STEP: " + step);
     }
 }

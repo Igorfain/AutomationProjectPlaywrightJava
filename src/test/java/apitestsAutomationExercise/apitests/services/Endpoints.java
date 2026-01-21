@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.services;
+package apitestsAutomationExercise.apitests.services;
 
 public class Endpoints {
 

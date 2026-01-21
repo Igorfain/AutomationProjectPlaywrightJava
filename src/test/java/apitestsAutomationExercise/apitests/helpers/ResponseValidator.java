@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.helpers;
+package apitestsAutomationExercise.apitests.helpers;
 
 import io.restassured.response.Response;
 import org.testng.Assert;

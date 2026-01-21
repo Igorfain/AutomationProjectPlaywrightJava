@@ -8,8 +8,8 @@
             <package name="apitests.tests.jsonplaceholderapi"/>
             <package name="apitests.tests.mocktests"/>
 
-            <package name="automationexercise.com.apitests.tests"/>
-            <package name="automationexercise.com.apitests.playwrightApiTests.tests"/>
+            <package name="apitestsAutomationExercise.apitests.tests"/>
+            <package name="apitestsAutomationExercise.apitests.playwrightApiTests.tests"/>
 
             <package name="automationexercise.com.tests"/>
             <package name="saucedemo.com.tests"/>

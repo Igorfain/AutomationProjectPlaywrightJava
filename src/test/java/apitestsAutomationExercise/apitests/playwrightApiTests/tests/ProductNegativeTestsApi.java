@@ -1,8 +1,8 @@
-package automationexercise.com.apitests.playwrightApiTests.tests;
+package apitestsAutomationExercise.apitests.playwrightApiTests.tests;
 
-import automationexercise.com.apitests.playwrightApiTests.base.BasePlaywrightApiTest;
-import automationexercise.com.apitests.playwrightApiTests.assertions.ProductApiAssertions;
-import automationexercise.com.apitests.playwrightApiTests.steps.ProductApiSteps;
+import apitestsAutomationExercise.apitests.playwrightApiTests.base.BasePlaywrightApiTest;
+import apitestsAutomationExercise.apitests.playwrightApiTests.assertions.ProductApiAssertions;
+import apitestsAutomationExercise.apitests.playwrightApiTests.steps.ProductApiSteps;
 import com.microsoft.playwright.APIResponse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,14 +19,14 @@ public class ProductNegativeTestsApi extends BasePlaywrightApiTest {
 
     @Test(description = "Search product with empty value")
     public void searchProductEmptyValue() {
-        ConsoleReporter.log("STEP: Search product with empty value");
+        logTestStep();
         APIResponse response = productApi.searchProductEmpty();
         ProductApiAssertions.assertEmptySearchReturnsAllProducts(response);
     }
 
     @Test(description = "Search product without parameter")
     public void searchProductWithoutParam() {
-        ConsoleReporter.log("STEP: Search product without parameter");
+        logTestStep();
         APIResponse response = productApi.searchProductWithoutParam();
         ProductApiAssertions.assertMissingParamError(response);
     }

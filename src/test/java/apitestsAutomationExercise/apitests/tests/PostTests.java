@@ -1,8 +1,8 @@
-package automationexercise.com.apitests.tests;
+package apitestsAutomationExercise.apitests.tests;
 
-import automationexercise.com.apitests.BaseApiTest;
-import automationexercise.com.apitests.helpers.ApiRequestHelper;
-import automationexercise.com.apitests.services.Endpoints;
+import apitestsAutomationExercise.apitests.BaseApiTest;
+import apitestsAutomationExercise.apitests.helpers.ApiRequestHelper;
+import apitestsAutomationExercise.apitests.services.Endpoints;
 import automationexercise.com.utils.ConfigReader;
 import com.google.gson.Gson;
 import io.qameta.allure.Owner;
@@ -39,6 +39,7 @@ public class PostTests extends BaseApiTest {
     @Story("Positive Test - Search for existing product")
     @Owner("Igor")
     public void testSearchProduct() {
+        logTestStep();
         Response response = apiRequestHelper.sendPostFormRequest(
                 AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT,
                 "search_product",
@@ -53,6 +54,7 @@ public class PostTests extends BaseApiTest {
     @Story("Positive Test - Verify existing user login")
     @Owner("Igor")
     public void testVerifyLogin() {
+        logTestStep();
         Map<String, String> formData = new HashMap<>();
         formData.put("email", email);
         formData.put("password", password);
@@ -70,6 +72,7 @@ public class PostTests extends BaseApiTest {
     @Story("API Validation")
     @Owner("Igor")
     public void testValidateResponseCodeFromBody() {
+        logTestStep();
         Response response = apiRequestHelper.sendPostFormRequest(
                 AUTOMATION_EXERCISE_URI + Endpoints.SEARCH_PRODUCT,
                 "",

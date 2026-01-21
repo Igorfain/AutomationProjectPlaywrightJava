@@ -1,10 +1,10 @@
 package automationexercise.com.steps;
 import com.microsoft.playwright.Page;
+import common.infra.ConsoleReporter;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import automationexercise.com.pages.LoginPage;
 import org.testng.Assert;
-import saucedemo.com.infra.ConsoleReporter;
 
 public class LoginSteps {
 
@@ -51,6 +51,7 @@ public class LoginSteps {
 
     @Step("Register New User")
     public void registerNewUser(String genderType,String day, String month, String year,String state,String countryValue) {
+        ConsoleReporter.log("STEP: Registering a new user");
         String expectedUser = loginPage.signInUserNameInsert();
         loginPage
                 .signInEmailInsert()
@@ -73,7 +74,7 @@ public class LoginSteps {
         Assert.assertEquals(loginPage.accountCreatedMessage(),"Account Created!","Message is wrong,please check!");
         loginPage.clickContinueButton();
         Assert.assertEquals(loginPage.actualLoggedInUserName(), expectedUser, "Logged-in username is incorrect, please check!");
-        ConsoleReporter.log("User is :"+ expectedUser);
+        System.out.println("User is :"+ expectedUser);
 
 
     }

@@ -1,4 +1,4 @@
-package automationexercise.com.apitests.utils;
+package apitestsAutomationExercise.apitests.utils;
 
 public class JsonUtils {
 

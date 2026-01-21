@@ -1,8 +1,8 @@
-package automationexercise.com.apitests.tests;
+package apitestsAutomationExercise.apitests.tests;
 
-import automationexercise.com.apitests.BaseApiTest;
-import automationexercise.com.apitests.helpers.ApiRequestHelper;
-import automationexercise.com.apitests.services.Endpoints;
+import apitestsAutomationExercise.apitests.BaseApiTest;
+import apitestsAutomationExercise.apitests.helpers.ApiRequestHelper;
+import apitestsAutomationExercise.apitests.services.Endpoints;
 import automationexercise.com.utils.ConfigPaths;
 import automationexercise.com.utils.ConfigReader;
 import io.qameta.allure.*;
@@ -38,6 +38,7 @@ public class PutTests extends BaseApiTest {
     @Story("Positive Test - Update existing user account")
     @Owner("Igor")
     public void testUpdateUserAccount() {
+        logTestStep();
         Map<String, String> formData = new HashMap<>();
         formData.put("email", email);
         formData.put("password", password);

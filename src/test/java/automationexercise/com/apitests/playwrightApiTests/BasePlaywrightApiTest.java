@@ -1,11 +1,16 @@
-package automationexercise.com.apitests.playwright;
+package automationexercise.com.apitests.playwrightApiTests;
 
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.Playwright;
+import io.qameta.allure.Epic;
+import io.qameta.allure.testng.Tag;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+@Epic("AI Tests")
+@Epic("AutomationExercise-PlaywrightAPI Tests")
+@Tag("AutomationExercise-PlaywrightAPI")
 public abstract class BasePlaywrightApiTest {
 
     protected Playwright playwright;

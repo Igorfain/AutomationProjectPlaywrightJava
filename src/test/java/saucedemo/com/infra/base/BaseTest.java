@@ -13,7 +13,6 @@ import saucedemo.com.utils.ConfigPaths;
 
 import java.util.Map;
 
-@Listeners({AllureTestNg.class})
 @Epic("Saucedemo UI Tests")
 @Tag("Saucedemo")
 public abstract class BaseTest {

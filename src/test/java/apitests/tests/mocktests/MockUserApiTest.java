@@ -7,8 +7,9 @@ import org.testng.annotations.Test;
 
 public class MockUserApiTest extends BaseApiTest {
 
-    @Test
+    @Test(description = "Verify that a new user is created successfully via mock POST request")
     public void createUserTest() {
+        logTestStep();
         String body = "{ \"name\": \"FreeWind\" }";
 
         Response response = mock.post("/user/create", body);
@@ -21,8 +22,9 @@ public class MockUserApiTest extends BaseApiTest {
         Assert.assertTrue(resp.contains("\"id\":777"));
     }
 
-    @Test
+    @Test(description = "Verify that user details are successfully updated via mock PUT request")
     public void updateUserTest() {
+        logTestStep();
         String body = "{ \"id\": 123, \"name\": \"FreeWind Updated\" }";
 
         Response response = mock.put("/user/update", body);
@@ -35,8 +37,9 @@ public class MockUserApiTest extends BaseApiTest {
         Assert.assertTrue(resp.contains("\"updated\":true"));
     }
 
-    @Test
+    @Test(description = "Verify that a user is successfully deleted via mock DELETE request")
     public void deleteUserTest() {
+        logTestStep();
         Response response = mock.deleteUser(123);
 
         String body = response.getBody().asString();
@@ -47,8 +50,9 @@ public class MockUserApiTest extends BaseApiTest {
         Assert.assertTrue(body.contains("\"result\":\"User deleted\""));
     }
 
-    @Test
+    @Test(description = "Verify that user details are successfully retrieved via mock GET request")
     public void getMockUser() {
+        logTestStep();
         Response response = mock.getUser(123);
 
         String body = response.getBody().asString();

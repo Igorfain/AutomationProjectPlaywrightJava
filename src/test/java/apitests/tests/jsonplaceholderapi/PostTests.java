@@ -6,13 +6,15 @@ import apitests.utils.JsonUtils;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import saucedemo.com.infra.ConsoleReporter;
 
 public class PostTests extends BaseApiTest {
 
     private final ApiService apiService = new ApiService();
 
-    @Test
+    @Test(description = "Verify that a POST request to /posts creates a new resource and returns 201 Created with a valid 'id'")
     public void testPostRequest() {
+        ConsoleReporter.log("STEP: Verify that a POST request to /posts creates a new resource and returns 201 Created with a valid 'id'");
         String requestBody = JsonUtils.createPostRequestBody("foo", "bar", 1);
         Response response = apiService.sendPostRequest(JSON_PLACEHOLDER_URI+"/posts", requestBody);
         System.out.println("Response Body is: " + response.getBody().asString());

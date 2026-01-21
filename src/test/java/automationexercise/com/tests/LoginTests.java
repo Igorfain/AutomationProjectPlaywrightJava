@@ -38,7 +38,6 @@ public class LoginTests extends BaseTest {
               .fillRelevantFields(name, email, subject, message)
               .uploadFile(filePath)
               .clickSubmitButton()
-              .acceptAlert()
               .verifySuccessMessage()
               .clickHomeButton()
               .verifyNavigatedToHomePage();

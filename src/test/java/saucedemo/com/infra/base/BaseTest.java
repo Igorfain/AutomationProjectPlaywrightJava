@@ -11,8 +11,7 @@ import saucedemo.com.utils.ConfigPaths;
 
 import java.util.Map;
 
-@Epic("UI Tests")
-@Epic("Saucedemo")
+@Epic("Saucedemo UI Tests")
 @Tag("Saucedemo")
 public abstract class BaseTest {
     protected Playwright playwright;

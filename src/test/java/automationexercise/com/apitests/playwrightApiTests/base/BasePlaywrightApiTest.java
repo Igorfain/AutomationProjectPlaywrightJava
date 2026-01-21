@@ -8,7 +8,6 @@ import io.qameta.allure.testng.Tag;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-@Epic("AI Tests")
 @Epic("AutomationExercise-PlaywrightAPI Tests")
 @Tag("AutomationExercise-PlaywrightAPI")
 public abstract class BasePlaywrightApiTest {

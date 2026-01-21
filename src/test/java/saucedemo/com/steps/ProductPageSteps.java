@@ -56,7 +56,7 @@ public class ProductPageSteps {
         productPage.verifyItemsOrderedByAtoZ();
     }
 
-    @Step("Verify items was ordered A to Z")
+    @Step("Verify items was ordered Price Low to High")
     public void verifyItemsPriceOrderedLowHigh() {
         ConsoleReporter.log("Verify items was ordered Price Low to High");
         productPage.verifyItemsPriceOrderedLowHigh();

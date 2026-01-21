@@ -1,6 +1,5 @@
 package automationexercise.com.tests;
 
-import automationexercise.com.infra.ConsoleReporter;
 import automationexercise.com.infra.base.BaseTest;
 import automationexercise.com.steps.ContactUsSteps;
 import automationexercise.com.steps.MainPageSteps;
@@ -20,7 +19,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Verify login ")
     public void testLogin() {
-        ConsoleReporter.log("Step 1 - Verify login in main page");
+        
         String expectedUserText = "TestUser";
         mainPageSteps.verifyLoggedInUser(expectedUserText);
     }

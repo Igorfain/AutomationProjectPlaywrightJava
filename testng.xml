@@ -9,6 +9,8 @@
             <package name="apitests.tests.mocktests"/>
 
             <package name="automationexercise.com.apitests.tests"/>
+            <package name="automationexercise.com.apitests.playwright"/>
+
             <package name="automationexercise.com.tests"/>
             <package name="saucedemo.com.tests"/>
         </packages>

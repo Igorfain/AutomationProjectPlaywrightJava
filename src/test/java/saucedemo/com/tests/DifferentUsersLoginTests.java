@@ -1,16 +1,12 @@
 package saucedemo.com.tests;
 
+import common.infra.ConsoleReporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import saucedemo.com.infra.ConsoleReporter;
 import saucedemo.com.infra.base.BaseTest;
 import saucedemo.com.steps.CartPageSteps;
 import saucedemo.com.steps.LoginSteps;
 import saucedemo.com.steps.ProductPageSteps;
-import saucedemo.com.utils.ConfigReader;
-import saucedemo.com.utils.ConfigPaths;
-
-import java.util.Map;
 
 public class DifferentUsersLoginTests extends BaseTest {
 
@@ -27,11 +23,9 @@ public class DifferentUsersLoginTests extends BaseTest {
 
     @Test(description = "Test login with problem user")
     public void testLoginWithProblemUser() {
-        ConsoleReporter.log("Step 1 - Verify login with problem user");
         productPageSteps.logoutFromSite();
-        Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
-        String problemUser = (String) config.get("problem_user");
-        String problemUserPassword = (String) config.get("problem_user_password");
+        String problemUser = dotenv.get("PROBLEM_USER");
+        String problemUserPassword = dotenv.get("PROBLEM_USER_PASSWORD");
         loginSteps.login(problemUser, problemUserPassword);
 
     }

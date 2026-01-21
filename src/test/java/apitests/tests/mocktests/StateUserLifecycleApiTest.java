@@ -1,17 +1,16 @@
 package apitests.tests.mocktests;
 
 import apitests.BaseApiTest;
+import common.infra.ConsoleReporter;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import saucedemo.com.infra.ConsoleReporter;
 
 public class StateUserLifecycleApiTest extends BaseApiTest {
 
     @Test(description = "Verify the stateful lifecycle of a user: check existence, delete, and confirm non-existence")
     public void statefulUserLifecycle() {
-        ConsoleReporter.log("STEP: Verify the stateful lifecycle of a user: check existence, delete, and confirm non-existence");
-
+        logTestStep();
         Response getBefore = mock.get("/stateuser/123");
         Assert.assertEquals(getBefore.getStatusCode(), 200);
 

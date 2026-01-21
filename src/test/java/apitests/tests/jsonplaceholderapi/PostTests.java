@@ -3,10 +3,10 @@ package apitests.tests.jsonplaceholderapi;
 import apitests.BaseApiTest;
 import apitests.services.ApiService;
 import apitests.utils.JsonUtils;
+import common.infra.ConsoleReporter;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import saucedemo.com.infra.ConsoleReporter;
 
 public class PostTests extends BaseApiTest {
 
@@ -14,7 +14,7 @@ public class PostTests extends BaseApiTest {
 
     @Test(description = "Verify that a POST request to /posts creates a new resource and returns 201 Created with a valid 'id'")
     public void testPostRequest() {
-        ConsoleReporter.log("STEP: Verify that a POST request to /posts creates a new resource and returns 201 Created with a valid 'id'");
+        logTestStep();
         String requestBody = JsonUtils.createPostRequestBody("foo", "bar", 1);
         Response response = apiService.sendPostRequest(JSON_PLACEHOLDER_URI+"/posts", requestBody);
         System.out.println("Response Body is: " + response.getBody().asString());

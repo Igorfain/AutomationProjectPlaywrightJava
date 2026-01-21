@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Full Project Suite" parallel="classes" thread-count="4">
 
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
     <test name="All Automation Tests">
         <packages>
             <package name="apitests.tests.fakerestapi"/>

@@ -16,7 +16,7 @@ public class LoginSteps {
 
     @Step("Enter credentials and login")
     public void login(String username, String password) {
-        ConsoleReporter.log("Logging in with username: '" + username + "'");
+        ConsoleReporter.log("Logging in with username");
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();

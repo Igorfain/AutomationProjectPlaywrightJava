@@ -1,7 +1,6 @@
 package automationexercise.com.steps;
 import com.microsoft.playwright.Page;
 import common.infra.ConsoleReporter;
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import automationexercise.com.pages.LoginPage;
 import org.testng.Assert;
@@ -16,37 +15,35 @@ public class LoginSteps {
 
     @Step("Login")
     public void login(String username, String password) {
-        Allure.step("Enter credentials and login", () -> {
+        ConsoleReporter.log("STEP: Logging in with username: " + username);
             loginPage
                     .enterUsername(username)
                     .enterPassword(password)
                     .clickLoginButton();
-        });
     }
 
     @Step("Invalid Login")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
-        Allure.step("Attempt login with invalid credentials", () -> {
+        ConsoleReporter.log("STEP: Attempting invalid login with username: " + invalidUsername);
             loginPage
                     .enterUsername(invalidUsername)
                     .enterPassword(invalidPassword)
                     .clickLoginButton();
-        });
+
     }
 
     @Step("Verify Error Message")
     public void verifyErrorMessage(String referenceText) {
-        Allure.step("Verify error message is displayed", () -> {
+        ConsoleReporter.log("STEP: Verifying error message");
             String actualErrorText = loginPage.getErrorMessage();
             loginPage.verifyErrorMessage(actualErrorText, referenceText);
-        });
+
     }
 
     @Step("Logout")
     public void logout() {
-        Allure.step("Click on logout button", () -> {
-            loginPage.clickLogoutButton();
-        });
+        ConsoleReporter.log("STEP: Logging out from the application");
+        loginPage.clickLogoutButton();
     }
 
     @Step("Register New User")

@@ -7,7 +7,6 @@ import apitestsAutomationExercise.apitests.playwrightApiTests.data.ProductTestDa
 import com.microsoft.playwright.APIResponse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import saucedemo.com.infra.ConsoleReporter;
 
 public class ProductTestsApi extends BasePlaywrightApiTest {
 

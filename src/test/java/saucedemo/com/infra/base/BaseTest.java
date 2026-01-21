@@ -1,8 +1,10 @@
 package saucedemo.com.infra.base;
 
 import com.microsoft.playwright.*;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import io.qameta.allure.testng.Tag;
 import org.testng.annotations.*;
 import saucedemo.com.steps.LoginSteps;
@@ -11,6 +13,7 @@ import saucedemo.com.utils.ConfigPaths;
 
 import java.util.Map;
 
+@Listeners({AllureTestNg.class})
 @Epic("Saucedemo UI Tests")
 @Tag("Saucedemo")
 public abstract class BaseTest {
@@ -21,10 +24,12 @@ public abstract class BaseTest {
     protected String url;
     protected String username;
     protected String password;
+    protected Dotenv dotenv;
 
     @BeforeMethod
     public void setUp() {
 
+        dotenv = Dotenv.load();
         Map<String, Object> config = ConfigReader.readConfigFile(ConfigPaths.MAIN_CONFIG_PATH);
         loadCredentialsFromConfig(config);
 

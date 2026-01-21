@@ -1,10 +1,13 @@
-package automationexercise.com.apitests.playwrightApiTests;
+package automationexercise.com.apitests.playwrightApiTests.tests;
 
+import automationexercise.com.apitests.playwrightApiTests.base.BasePlaywrightApiTest;
+import automationexercise.com.apitests.playwrightApiTests.assertions.ProductApiAssertions;
+import automationexercise.com.apitests.playwrightApiTests.steps.ProductApiSteps;
 import com.microsoft.playwright.APIResponse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class PlaywrightProductNegativeTests extends BasePlaywrightApiTest {
+public class ProductNegativeTests extends BasePlaywrightApiTest {
 
     private ProductApiSteps productApi;
 

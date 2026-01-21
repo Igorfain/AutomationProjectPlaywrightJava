@@ -7,7 +7,7 @@ import saucedemo.com.infra.base.BaseTest;
 import saucedemo.com.steps.CartPageSteps;
 import saucedemo.com.steps.ProductPageSteps;
 
-public class PlaywrightTests extends BaseTest {
+public class ProductFlowTests extends BaseTest {
 
     private CartPageSteps cartPageSteps;
     private ProductPageSteps productPageSteps;

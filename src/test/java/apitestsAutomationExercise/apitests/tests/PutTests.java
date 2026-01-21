@@ -35,7 +35,6 @@ public class PutTests extends BaseApiTest {
     }
 
     @Test(description = "Update user account details")
-    @Story("Positive Test - Update existing user account")
     @Owner("Igor")
     public void testUpdateUserAccount() {
         logTestStep();

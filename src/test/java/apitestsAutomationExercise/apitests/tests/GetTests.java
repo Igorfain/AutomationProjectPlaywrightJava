@@ -17,7 +17,6 @@ public class GetTests extends BaseApiTest {
     private final ApiService apiService = new ApiService();
 
     @Test(description = "Verify /api/productsList returns valid products list")
-    @Story("Get All Products")
     @Severity(SeverityLevel.NORMAL)
     @Owner("Igor")
     public void testGetAllProductList() {
@@ -35,7 +34,6 @@ public class GetTests extends BaseApiTest {
     }
 
     @Test(description = "Verify that /api/brandsList returns valid brand list")
-    @Story("Get All Brands")
     @Owner("Igor")
     @Link(name = "API List", url = "https://automationexercise.com/api_list")
     public void testGetAllBrandsList() {
@@ -50,7 +48,6 @@ public class GetTests extends BaseApiTest {
     }
 
     @Test(description = "Verify POST /api/productsList returns 405 in response body")
-    @Story("Negative Test - Unsupported Method")
     @Owner("Igor")
     public void testPostToProductsList_NotAllowed() {
         logTestStep();

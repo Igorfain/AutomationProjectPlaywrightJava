@@ -36,7 +36,6 @@ public class PostTests extends BaseApiTest {
     }
 
     @Test(description = "Search Product using keyword 'Men Tshirt'")
-    @Story("Positive Test - Search for existing product")
     @Owner("Igor")
     public void testSearchProduct() {
         logTestStep();
@@ -51,7 +50,6 @@ public class PostTests extends BaseApiTest {
     }
 
     @Test(description = "Verify Login with valid email and password")
-    @Story("Positive Test - Verify existing user login")
     @Owner("Igor")
     public void testVerifyLogin() {
         logTestStep();
@@ -69,7 +67,6 @@ public class PostTests extends BaseApiTest {
     }
 
     @Test(description = "POST To Search Product without search_product parameter")
-    @Story("API Validation")
     @Owner("Igor")
     public void testValidateResponseCodeFromBody() {
         logTestStep();

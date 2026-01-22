@@ -21,10 +21,9 @@ public class LoginNegativeTests extends BaseTest {
     public void testLoginWithInvalidCredentials() {
         String invalidUsername = ConfigReader.getEnv("INVALID_USERNAME");
         String invalidPassword = ConfigReader.getEnv("INVALID_PASSWORD");
-        ConsoleReporter.log("STEP: Attempting invalid login");
         loginSteps.invalidLogin(invalidUsername, invalidPassword);
         String referenceText = "Your email or password is incorrect!";
-        ConsoleReporter.log("STEP: Verifying error message");
+
         loginSteps.verifyErrorMessage(referenceText);
     }
 

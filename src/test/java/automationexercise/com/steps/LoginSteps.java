@@ -24,7 +24,6 @@ public class LoginSteps {
 
     @Step("Invalid Login")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
-        ConsoleReporter.log("STEP: Attempting invalid login with username: " + invalidUsername);
             loginPage
                     .enterUsername(invalidUsername)
                     .enterPassword(invalidPassword)
@@ -34,7 +33,6 @@ public class LoginSteps {
 
     @Step("Verify Error Message")
     public void verifyErrorMessage(String referenceText) {
-        ConsoleReporter.log("STEP: Verifying error message");
             String actualErrorText = loginPage.getErrorMessage();
             loginPage.verifyErrorMessage(actualErrorText, referenceText);
 

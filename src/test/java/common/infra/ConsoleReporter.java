@@ -7,6 +7,6 @@ public class ConsoleReporter {
 
     public static void log(String message) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        System.out.println(timestamp + " [INFO] " + message);
+        System.out.println(timestamp + " [STEP] " + message);
     }
 }

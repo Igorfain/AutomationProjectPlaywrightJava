@@ -3,7 +3,6 @@ package automationexercise.com.tests;
 import automationexercise.com.infra.base.BaseTest;
 import automationexercise.com.steps.LoginSteps;
 import automationexercise.com.utils.ConfigReader;
-import common.infra.ConsoleReporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,7 +22,6 @@ public class LoginNegativeTests extends BaseTest {
         String invalidPassword = ConfigReader.getEnv("INVALID_PASSWORD");
         loginSteps.invalidLogin(invalidUsername, invalidPassword);
         String referenceText = "Your email or password is incorrect!";
-
         loginSteps.verifyErrorMessage(referenceText);
     }
 

@@ -16,7 +16,7 @@ public class LoginSteps {
 
     @Step("Login")
     public void login(String username, String password) {
-        ConsoleReporter.log("STEP: Logging in with username: " + username);
+        ConsoleReporter.log("Performing login with valid credentials");
             loginPage
                     .enterUsername(username)
                     .enterPassword(password)
@@ -25,8 +25,7 @@ public class LoginSteps {
 
     @Step("Invalid Login")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
-        Allure.step("STEP: Attempting invalid login");
-        ConsoleReporter.log("STEP: Attempting invalid login");
+        ConsoleReporter.log("Attempting login with invalid credentials");
             loginPage
                     .enterUsername(invalidUsername)
                     .enterPassword(invalidPassword)
@@ -36,8 +35,7 @@ public class LoginSteps {
 
     @Step("Verify Error Message")
     public void verifyErrorMessage(String referenceText) {
-        Allure.step("STEP: Verifying error message");
-        ConsoleReporter.log("STEP: Verifying error message");
+        ConsoleReporter.log("Verifying error message");
             String actualErrorText = loginPage.getErrorMessage();
             loginPage.verifyErrorMessage(actualErrorText, referenceText);
 

@@ -1,6 +1,7 @@
 package automationexercise.com.steps;
 import com.microsoft.playwright.Page;
 import common.infra.ConsoleReporter;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import automationexercise.com.pages.LoginPage;
 import org.testng.Assert;
@@ -24,6 +25,8 @@ public class LoginSteps {
 
     @Step("Invalid Login")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
+        Allure.step("STEP: Attempting invalid login");
+        ConsoleReporter.log("STEP: Attempting invalid login");
             loginPage
                     .enterUsername(invalidUsername)
                     .enterPassword(invalidPassword)
@@ -33,6 +36,8 @@ public class LoginSteps {
 
     @Step("Verify Error Message")
     public void verifyErrorMessage(String referenceText) {
+        Allure.step("STEP: Verifying error message");
+        ConsoleReporter.log("STEP: Verifying error message");
             String actualErrorText = loginPage.getErrorMessage();
             loginPage.verifyErrorMessage(actualErrorText, referenceText);
 

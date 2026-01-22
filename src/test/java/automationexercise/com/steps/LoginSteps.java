@@ -1,7 +1,6 @@
 package automationexercise.com.steps;
 import com.microsoft.playwright.Page;
 import common.infra.ConsoleReporter;
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import automationexercise.com.pages.LoginPage;
 import org.testng.Assert;
@@ -23,9 +22,9 @@ public class LoginSteps {
                     .clickLoginButton();
     }
 
-    @Step("Invalid Login")
+    @Step("Login with invalid credentials")
     public void invalidLogin(String invalidUsername, String invalidPassword) {
-        ConsoleReporter.log("Attempting login with invalid credentials");
+        ConsoleReporter.log("Login with invalid credentials");
             loginPage
                     .enterUsername(invalidUsername)
                     .enterPassword(invalidPassword)
@@ -41,15 +40,15 @@ public class LoginSteps {
 
     }
 
-    @Step("Logout")
+    @Step("Logging out")
     public void logout() {
-        ConsoleReporter.log("STEP: Logging out from the application");
+        ConsoleReporter.log("Logging out");
         loginPage.clickLogoutButton();
     }
 
-    @Step("Register New User")
+    @Step("Registering a new user")
     public void registerNewUser(String genderType,String day, String month, String year,String state,String countryValue) {
-        ConsoleReporter.log("STEP: Registering a new user");
+        ConsoleReporter.log("Registering a new user");
         String expectedUser = loginPage.signInUserNameInsert();
         loginPage
                 .signInEmailInsert()

@@ -26,7 +26,7 @@ public class MainPageSteps {
 
     @Step("Verify Main page logo is visible")
     public void verifyMainPageLogoIsVisible(){
-        ConsoleReporter.log("STEP: Verify Main page logo is visible");
+        ConsoleReporter.log("Verify Main page logo is visible");
         assertThat(mainPage.logo).isVisible();
     }
 

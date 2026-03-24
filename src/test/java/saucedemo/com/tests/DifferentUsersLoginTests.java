@@ -10,22 +10,23 @@ import saucedemo.com.steps.ProductPageSteps;
 
 public class DifferentUsersLoginTests extends BaseTest {
 
-    private CartPageSteps cartPageSteps;
     private ProductPageSteps productPageSteps;
     private LoginSteps loginSteps;
+    private String problemUser;
+    private String problemUserPassword;
 
     @BeforeMethod
     public void setUpTest() {
         productPageSteps = new ProductPageSteps(page);
-        cartPageSteps = new CartPageSteps(page);
         loginSteps = new LoginSteps(page);
+        problemUser = dotenv.get("PROBLEM_USER");
+        problemUserPassword = dotenv.get("PROBLEM_USER_PASSWORD");
     }
 
     @Test(description = "Test login with problem user")
     public void testLoginWithProblemUser() {
+
         productPageSteps.logoutFromSite();
-        String problemUser = dotenv.get("PROBLEM_USER");
-        String problemUserPassword = dotenv.get("PROBLEM_USER_PASSWORD");
         loginSteps.login(problemUser, problemUserPassword);
 
     }

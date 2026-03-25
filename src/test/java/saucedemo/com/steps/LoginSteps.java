@@ -1,5 +1,6 @@
 package saucedemo.com.steps;
 
+import saucedemo.com.models.User;
 import com.microsoft.playwright.Page;
 import common.infra.ConsoleReporter;
 import io.qameta.allure.Step;
@@ -14,10 +15,10 @@ public class LoginSteps {
     }
 
     @Step("Enter credentials and login")
-    public void login(String username, String password) {
-        ConsoleReporter.log("Enter credentials and login");
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
+    public void login(User user) {
+        ConsoleReporter.log("Enter credentials and login for: " + user.username());
+        loginPage.enterUsername(user.username());
+        loginPage.enterPassword(user.password());
         loginPage.clickLoginButton();
     }
 }

@@ -1,10 +1,9 @@
 package saucedemo.com.tests;
 
-import common.infra.ConsoleReporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import saucedemo.com.infra.base.BaseTest;
-import saucedemo.com.steps.CartPageSteps;
+import saucedemo.com.models.User;
 import saucedemo.com.steps.LoginSteps;
 import saucedemo.com.steps.ProductPageSteps;
 
@@ -25,9 +24,8 @@ public class DifferentUsersLoginTests extends BaseTest {
 
     @Test(description = "Test login with problem user")
     public void testLoginWithProblemUser() {
-
         productPageSteps.logoutFromSite();
-        loginSteps.login(problemUser, problemUserPassword);
+        loginSteps.login(new User(problemUser, problemUserPassword));
 
     }
 }

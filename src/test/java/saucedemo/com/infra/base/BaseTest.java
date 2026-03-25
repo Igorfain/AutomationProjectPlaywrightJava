@@ -4,9 +4,9 @@ import com.microsoft.playwright.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
-import io.qameta.allure.testng.AllureTestNg;
 import io.qameta.allure.testng.Tag;
 import org.testng.annotations.*;
+import saucedemo.com.models.User;
 import saucedemo.com.steps.LoginSteps;
 import saucedemo.com.utils.ConfigReader;
 import saucedemo.com.utils.ConfigPaths;
@@ -57,7 +57,7 @@ public abstract class BaseTest {
     public void navigateToUrlAndPerformDefaultLogin() {
         page.navigate(url);
         LoginSteps loginSteps = new LoginSteps(page);
-        loginSteps.login(username, password);
+        loginSteps.login(new User(username, password));
     }
 
     @AfterMethod

@@ -35,7 +35,8 @@ public class CartPage extends BasePage {
     }
 
     public void verifyItemRemovedFromCart() {
-        page.locator(INVENTORY_IN_CART).nth(0).isHidden();
+        assertTrue(page.locator(INVENTORY_IN_CART).nth(0).isHidden(),
+                "Cart item should be hidden after removal");
     }
 
     public void verifyContinueShopButtonIsExisting() {

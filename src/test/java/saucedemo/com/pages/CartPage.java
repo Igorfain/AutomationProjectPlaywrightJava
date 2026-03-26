@@ -9,8 +9,8 @@ import static org.testng.Assert.assertTrue;
 
 public class CartPage extends BasePage {
 
-    private String removeOrderButton = "[data-test='remove-sauce-labs-backpack']";
-    private String inventoryInCart = "[data-test='inventory-item-name']";
+    private static final String REMOVE_ORDER_BUTTON = "[data-test='remove-sauce-labs-backpack']";
+    private static final String INVENTORY_IN_CART = "[data-test='inventory-item-name']";
 
     ActionBot actionBot = new ActionBot(page);
 
@@ -19,12 +19,12 @@ public class CartPage extends BasePage {
     }
 
     public void removeOrder() {
-        page.locator(removeOrderButton).isVisible();
-        page.locator(removeOrderButton);
+        page.locator(REMOVE_ORDER_BUTTON).isVisible();
+        page.locator(REMOVE_ORDER_BUTTON);
     }
 
     public void checkItemInCartAndRemove() {
-        var isItemVisible = page.locator(inventoryInCart).nth(0).isVisible();
+        var isItemVisible = page.locator(INVENTORY_IN_CART).nth(0).isVisible();
         if (isItemVisible) {
             removeItemFromCart();
         } else {
@@ -35,12 +35,12 @@ public class CartPage extends BasePage {
     }
 
     public void removeItemFromCart() {
-        page.locator(removeOrderButton).nth(0).click();
+        page.locator(REMOVE_ORDER_BUTTON).nth(0).click();
 
     }
 
     public void verifyItemRemovedFromCart() {
-        page.locator(inventoryInCart).nth(0).isHidden();
+        page.locator(INVENTORY_IN_CART).nth(0).isHidden();
     }
 
     public void verifyContinueShopButtonIsExisting() {

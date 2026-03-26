@@ -18,11 +18,6 @@ public class CartPage extends BasePage {
         super(page); // Call the constructor of BasePage
     }
 
-    public void removeOrder() {
-        page.locator(REMOVE_ORDER_BUTTON).isVisible();
-        page.locator(REMOVE_ORDER_BUTTON);
-    }
-
     public void checkItemInCartAndRemove() {
         var isItemVisible = page.locator(INVENTORY_IN_CART).nth(0).isVisible();
         if (isItemVisible) {

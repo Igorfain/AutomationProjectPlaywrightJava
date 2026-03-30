@@ -13,6 +13,12 @@ public class ProductPageSteps {
         this.productPage = new ProductPage(page);
     }
 
+    @Step("Get item price from details page as double")
+    public double getItemDetailsPriceDoubleStep() {
+        ConsoleReporter.log("Get item price from details page as double");
+        return productPage.getItemDetailsPriceDouble();
+    }
+
     @Step("Get the logo from the product page")
     public String getLogoText() {
         ConsoleReporter.log("Get the logo from the product page");
@@ -74,4 +80,16 @@ public class ProductPageSteps {
         productPage.verifyLogout();
     }
 
+    @Step("Get item name from details page")
+    public String getItemDetailsNameTextStep() {
+        ConsoleReporter.log("Get item name from details page");
+        return productPage.getItemDetailsNameText();
+    }
+
+    @Step("Verify inventory (products) page is displayed")
+    public void verifyInventoryPageIsDisplayed() {
+        ConsoleReporter.log("Verify inventory (products) page is displayed");
+        org.testng.Assert.assertTrue(productPage.isInventoryPageDisplayed(),
+                "Inventory (products) page should be displayed");
+    }
 }

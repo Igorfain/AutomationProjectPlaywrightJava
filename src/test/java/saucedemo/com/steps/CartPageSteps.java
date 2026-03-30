@@ -37,9 +37,36 @@ public class CartPageSteps {
         cartPage.verifyButtonName(buttonNameRef);
     }
 
-    @Step("")
+    @Step("Click Continue Shopping and verify main page is displayed")
     public void clickButtonAndVerifyMainPageIsDisplayed(){
         ConsoleReporter.log("Clicking button and verifying main page is displayed");
         cartPage.clickButtonAndVerifyMainPageIsDisplayed();
+    }
+
+    @Step("Get item name from cart")
+    public String getCartItemNameStep() {
+        ConsoleReporter.log("Get item name from cart");
+        return cartPage.getCartItemName();
+    }
+
+    @Step("Get item price from cart as double")
+    public double getCartItemPriceStep() {
+        ConsoleReporter.log("Get item price from cart as double");
+        return cartPage.getCartItemPrice();
+    }
+
+    @Step("Click Checkout button")
+    public void clickCheckoutButton() {
+        ConsoleReporter.log("Click Checkout button");
+        cartPage.clickCheckoutButton();
+    }
+
+    @Step("Verify cart item details - name: {expectedName}, price: {expectedPrice}")
+    public void verifyCartItemDetails(String expectedName, double expectedPrice) {
+        ConsoleReporter.log("Verify cart item details - name: " + expectedName + ", price: " + expectedPrice);
+        String actualName = getCartItemNameStep();
+        double actualPrice = getCartItemPriceStep();
+        org.testng.Assert.assertEquals(actualName, expectedName, "Item name in cart should match details page");
+        org.testng.Assert.assertEquals(actualPrice, expectedPrice, "Item price in cart should match details page");
     }
 }

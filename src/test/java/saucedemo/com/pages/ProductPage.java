@@ -10,24 +10,38 @@ import java.util.stream.Collectors;
 
 public class ProductPage extends BasePage {
 
-    private final Locator pageTitleLocator = page.locator(".app_logo");
-    private final Locator addToCartButtonLocator = page.locator("#add-to-cart");
-    private final Locator removeItemButtonLocator = page.locator("#remove");
-    private final Locator cartIconLocator = page.locator("[data-test='shopping-cart-link']");
-    private final Locator sortingDropdownLocator = page.locator(".product_sort_container");
-    private final Locator inventoryItemNameLocator = page.locator(".inventory_item_name");
-    private final Locator priceElementLocator = page.locator(".inventory_item_price");
-    private final Locator burgerMenuLocator = page.locator("#react-burger-menu-btn");
-    private final Locator logoutSidebarButtonLocator = page.locator("#logout_sidebar_link");
-
+    private final Locator pageTitleLocator;
+    private final Locator addToCartButtonLocator;
+    private final Locator removeItemButtonLocator;
+    private final Locator cartIconLocator;
+    private final Locator sortingDropdownLocator;
+    private final Locator inventoryItemNameLocator;
+    private final Locator priceElementLocator;
+    private final Locator itemDetailsPriceLocator;
+    private final Locator burgerMenuLocator;
+    private final Locator logoutSidebarButtonLocator;
 
     public ProductPage(Page page) {
-        super(page); // Call the constructor of BasePage
+        super(page);
+        this.pageTitleLocator = page.locator(".app_logo");
+        this.addToCartButtonLocator = page.locator("#add-to-cart");
+        this.removeItemButtonLocator = page.locator("#remove");
+        this.cartIconLocator = page.locator("[data-test='shopping-cart-link']");
+        this.sortingDropdownLocator = page.locator(".product_sort_container");
+        this.inventoryItemNameLocator = page.locator(".inventory_item_name");
+        this.priceElementLocator = page.locator(".inventory_item_price");
+        this.itemDetailsPriceLocator = page.locator(".inventory_details_price");
+        this.burgerMenuLocator = page.locator("#react-burger-menu-btn");
+        this.logoutSidebarButtonLocator = page.locator("#logout_sidebar_link");
+    }
+
+    public double getItemDetailsPriceDouble() {
+        String priceText = itemDetailsPriceLocator.innerText().replace("$", "").trim();
+        return Double.parseDouble(priceText);
     }
 
     public String getProductLogoText() {
-        String pageTitleText = pageTitleLocator.innerText();
-        return pageTitleText;
+        return pageTitleLocator.innerText();
     }
 
     public void openItemPage(String itemName) {
@@ -107,5 +121,13 @@ public class ProductPage extends BasePage {
     public void verifyLogout() {
         var loginButton = page.locator("#login-button");
         assert loginButton.isVisible();
+    }
+
+    public String getItemDetailsNameText() {
+        return page.locator(".inventory_details_name").innerText();
+    }
+
+    public boolean isInventoryPageDisplayed() {
+        return page.locator(".inventory_list").isVisible();
     }
 }

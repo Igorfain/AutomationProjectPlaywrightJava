@@ -9,36 +9,58 @@ import java.util.UUID;
 
 public class LoginPage extends BasePage {
 
-    // Locators
-    private final Locator usernameInput = page.locator("[data-qa='login-email']");
-    private final Locator passwordInput = page.locator("[data-qa='login-password']");
-    private final Locator loginButton = page.locator("[data-qa='login-button']");
-    private final Locator incorrectLoginMessage = page.locator("form p[style='color: red;']");
-    private final Locator logoutButton = page.locator("a[href='/logout']");
-    private final Locator signInUserNameInput = page.locator("[data-qa='signup-name']");
-    private final Locator signInEmailInput = page.locator("[data-qa='signup-email']");
-    private final Locator signUpButton = page.locator("[data-qa='signup-button']");
-    private final Locator signUpPasswordInput = page.locator("[data-qa='password']");
-    private final Locator daySelect = page.locator("#days");
-    private final Locator monthSelect = page.locator("#months");
-    private final Locator yearSelect = page.locator("#years");
-    private final Locator firstNameInput = page.locator("#first_name");
-    private final Locator lastNameInput = page.locator("#last_name");
-    private final Locator stateInput = page.locator("#state");
-    private final Locator cityInput = page.locator("#city");
-    private final Locator countrySelect = page.locator("#country");
-    private final Locator zipCodeInput = page.locator("#zipcode");
-    private final Locator mobileNumberInput = page.locator("#mobile_number");
-    private final Locator createAccountButton = page.locator("button[data-qa='create-account']");
-    private final Locator addressInput = page.locator("[data-qa='address']");
-    private final Locator accountCreatedMessageLocator  = page.locator("[data-qa='account-created']");
-    private final Locator continueButton  = page.locator("[data-qa='continue-button']");
+    private final Locator usernameInput;
+    private final Locator passwordInput;
+    private final Locator loginButton;
+    private final Locator incorrectLoginMessage;
+    private final Locator logoutButton;
+    private final Locator signInUserNameInput;
+    private final Locator signInEmailInput;
+    private final Locator signUpButton;
+    private final Locator signUpPasswordInput;
+    private final Locator daySelect;
+    private final Locator monthSelect;
+    private final Locator yearSelect;
+    private final Locator firstNameInput;
+    private final Locator lastNameInput;
+    private final Locator stateInput;
+    private final Locator cityInput;
+    private final Locator countrySelect;
+    private final Locator zipCodeInput;
+    private final Locator mobileNumberInput;
+    private final Locator createAccountButton;
+    private final Locator addressInput;
+    private final Locator accountCreatedMessageLocator;
+    private final Locator continueButton;
 
-    private ActionBot actionBot;
+    private final ActionBot actionBot;
 
     public LoginPage(Page page) {
-        super(page); // Call the constructor of BasePage
-        this.actionBot = new ActionBot(page); // Instantiate the ActionBot
+        super(page);
+        this.actionBot = new ActionBot(page);
+        this.usernameInput = page.locator("[data-qa='login-email']");
+        this.passwordInput = page.locator("[data-qa='login-password']");
+        this.loginButton = page.locator("[data-qa='login-button']");
+        this.incorrectLoginMessage = page.locator("form p[style='color: red;']");
+        this.logoutButton = page.locator("a[href='/logout']");
+        this.signInUserNameInput = page.locator("[data-qa='signup-name']");
+        this.signInEmailInput = page.locator("[data-qa='signup-email']");
+        this.signUpButton = page.locator("[data-qa='signup-button']");
+        this.signUpPasswordInput = page.locator("[data-qa='password']");
+        this.daySelect = page.locator("#days");
+        this.monthSelect = page.locator("#months");
+        this.yearSelect = page.locator("#years");
+        this.firstNameInput = page.locator("#first_name");
+        this.lastNameInput = page.locator("#last_name");
+        this.stateInput = page.locator("#state");
+        this.cityInput = page.locator("#city");
+        this.countrySelect = page.locator("#country");
+        this.zipCodeInput = page.locator("#zipcode");
+        this.mobileNumberInput = page.locator("#mobile_number");
+        this.createAccountButton = page.locator("button[data-qa='create-account']");
+        this.addressInput = page.locator("[data-qa='address']");
+        this.accountCreatedMessageLocator = page.locator("[data-qa='account-created']");
+        this.continueButton = page.locator("[data-qa='continue-button']");
     }
 
     public LoginPage enterUsername(String username) {

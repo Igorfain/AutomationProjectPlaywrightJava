@@ -4,27 +4,22 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class MainPage extends BasePage {
-    // Locators
-    private final String loggedInTextSelector = "a i.fa.fa-user + b";
-    public final Locator logo = page.locator("img[alt='Website for automation practice']");
 
-
+    private final Locator loggedInText;
+    public final Locator logo;
 
     public MainPage(Page page) {
         super(page);
+        this.loggedInText = page.locator("a i.fa.fa-user + b");
+        this.logo = page.locator("img[alt='Website for automation practice']");
     }
 
     public String getLoggedInUserText() {
-        // Ensure page and loggedInTextSelector are properly initialized
-        String loggedInUser = page.locator(loggedInTextSelector).textContent().trim();
-        return loggedInUser;
+        return loggedInText.textContent().trim();
     }
 
     public void verifyLoggedInUser(String expectedUserText) {
-        // Assert that the logged-in user text contains "TestUser"
         String loggedInUser = getLoggedInUserText();
-        assert loggedInUser.contains(expectedUserText) : "Expected :" +"'"+ expectedUserText +"'"+ " in logged-in user text, but got: " + loggedInUser;
+        assert loggedInUser.contains(expectedUserText) : "Expected :'" + expectedUserText + "' in logged-in user text, but got: " + loggedInUser;
     }
-
 }
-

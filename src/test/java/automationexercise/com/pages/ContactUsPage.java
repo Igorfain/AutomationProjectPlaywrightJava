@@ -10,23 +10,32 @@ import java.util.regex.Pattern;
 
 public class ContactUsPage extends BasePage{
 
-    private final Locator contactUsButton = page.locator("a[href*='contact_us']");
-    private final Locator getInTouchText = page.locator("h2.title.text-center", new Page.LocatorOptions().setHasText("Get In Touch"));
-    private final Locator nameInput = page.locator("[data-qa='name']");
-    private final Locator emailInput = page.locator("[data-qa='email']");
-    private final Locator subjectInput = page.locator("[data-qa='subject']");
-    private final Locator messageInput = page.locator("[data-qa='message']");
-    private final Locator uploadFileInput = page.locator("input[name='upload_file']");
-    private final Locator submitButton = page.locator("input[type='submit']");
-    private final Locator successMessage = page.locator(".status.alert-success");
-    private final Locator homeButton = page.locator("a.btn-success[href='/']");
-
+    private final Locator contactUsButton;
+    private final Locator getInTouchText;
+    private final Locator nameInput;
+    private final Locator emailInput;
+    private final Locator subjectInput;
+    private final Locator messageInput;
+    private final Locator uploadFileInput;
+    private final Locator submitButton;
+    private final Locator successMessage;
+    private final Locator homeButton;
 
     private ActionBot actionBot;
 
     public ContactUsPage(Page page) {
-        super(page); // Call the constructor of BasePage
-        this.actionBot = new ActionBot(page); // Instantiate the ActionBot
+        super(page);
+        this.actionBot = new ActionBot(page);
+        this.contactUsButton = page.locator("a[href*='contact_us']");
+        this.getInTouchText = page.locator("h2.title.text-center", new Page.LocatorOptions().setHasText("Get In Touch"));
+        this.nameInput = page.locator("[data-qa='name']");
+        this.emailInput = page.locator("[data-qa='email']");
+        this.subjectInput = page.locator("[data-qa='subject']");
+        this.messageInput = page.locator("[data-qa='message']");
+        this.uploadFileInput = page.locator("input[name='upload_file']");
+        this.submitButton = page.locator("input[type='submit']");
+        this.successMessage = page.locator(".status.alert-success");
+        this.homeButton = page.locator("a.btn-success[href='/']");
     }
 
     public void clickContactUsButton() {

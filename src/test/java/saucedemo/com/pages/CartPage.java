@@ -3,50 +3,47 @@ package saucedemo.com.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import org.testng.Assert;
-import saucedemo.com.infra.actions.ActionBot;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 public class CartPage extends BasePage {
 
-    private final Locator removeOrderButton;
-    private final Locator inventoryInCart;
-    private final Locator continueShoppingButton;
+    // Generic, reusable selectors
+    private final Locator cartItem;
     private final Locator cartItemName;
     private final Locator cartItemPrice;
+    private final Locator continueShoppingButton;
     private final Locator checkoutButton;
-    private final Locator addToCartButton;
 
     public CartPage(Page page) {
         super(page);
-        this.removeOrderButton = page.locator("[data-test='remove-sauce-labs-backpack']");
-        this.inventoryInCart = page.locator("[data-test='inventory-item-name']");
-        this.continueShoppingButton = page.locator("[name='continue-shopping']");
+        this.cartItem = page.locator(".cart_item");
         this.cartItemName = page.locator(".cart_item .inventory_item_name");
         this.cartItemPrice = page.locator(".cart_item .inventory_item_price");
+        this.continueShoppingButton = page.locator("[name='continue-shopping']");
         this.checkoutButton = page.locator("[data-test='checkout']");
-        this.addToCartButton = page.locator("[name='add-to-cart-sauce-labs-backpack']");
     }
 
     public void checkItemInCartAndRemove() {
-        var isItemVisible = inventoryInCart.nth(0).isVisible();
-        if (isItemVisible) {
-            removeItemFromCart();
+        if (cartItem.nth(0).isVisible()) {
+            removeItemFromCart(0);
         } else {
             System.out.println("No item in the cart list");
             Assert.fail("Test failed intentionally: No item found in the cart.");
         }
-
     }
 
-    public void removeItemFromCart() {
-        removeOrderButton.nth(0).click();
+    public void removeItemFromCart(int itemIndex) {
+        page.locator(".cart_item").nth(itemIndex).locator("button[data-test*='remove']").click();
+    }
 
+    public void removeItemFromCartByName(String itemName) {
+        page.locator(String.format(".cart_item:has(:text(\"%s\")) button[data-test*='remove']", itemName)).click();
     }
 
     public void verifyItemRemovedFromCart() {
-        assertTrue(inventoryInCart.nth(0).isHidden(),
+        assertTrue(cartItem.nth(0).isHidden(),
                 "Cart item should be hidden after removal");
     }
 
@@ -62,7 +59,7 @@ public class CartPage extends BasePage {
 
     public void clickButtonAndVerifyMainPageIsDisplayed() {
         continueShoppingButton.click();
-        boolean isMainPageDisplayed = addToCartButton.isVisible();
+        boolean isMainPageDisplayed = page.locator("button[data-test*='add-to-cart']").first().isVisible();
         assertTrue(isMainPageDisplayed, "The main page should be displayed after clicking the 'continue-shopping' button.");
     }
 

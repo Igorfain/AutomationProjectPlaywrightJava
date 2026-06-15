@@ -2,7 +2,6 @@ package apitests.tests.jsonplaceholderapi;
 
 import apitests.BaseApiTest;
 import apitests.services.ApiService;
-import common.infra.ConsoleReporter;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;

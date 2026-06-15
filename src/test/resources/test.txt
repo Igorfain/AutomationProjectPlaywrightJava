@@ -1,4 +1,4 @@
-Test Case 6: Contact Us Form
+Test Case 6: Contact Us Form (Text file for test using in Java project)
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
 3. Verify that home page is visible successfully

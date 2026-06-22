@@ -32,6 +32,7 @@ public class LoginPage extends BasePage {
     private final Locator addressInput;
     private final Locator accountCreatedMessageLocator;
     private final Locator continueButton;
+    private final Locator genderRadioButton;
 
     private final ActionBot actionBot;
 
@@ -61,6 +62,7 @@ public class LoginPage extends BasePage {
         this.addressInput = page.locator("[data-qa='address']");
         this.accountCreatedMessageLocator = page.locator("[data-qa='account-created']");
         this.continueButton = page.locator("[data-qa='continue-button']");
+        this.genderRadioButton = page.locator("#id_gender1");
     }
 
     public LoginPage enterUsername(String username) {
@@ -112,8 +114,8 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage selectRadioButton(String genderType) {
-        actionBot.selectRadioButton(page.locator(genderType));
+    public LoginPage selectRadioButton() {
+        actionBot.selectRadioButton(genderRadioButton);
         return this;
     }
 

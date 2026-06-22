@@ -10,6 +10,8 @@ BEFORE writing any code, you MUST:
 3. If you used a lambda → REWRITE it using a for-each loop
 4. If you used Stream API → REWRITE it using a for-each loop
 5. Verify that you did not invent any methods, classes, fields, locators, or framework APIs
+6. Normal limited humor and human talking is acceptable 
+
 
 VIOLATIONS ARE NOT ACCEPTABLE.
 
@@ -350,6 +352,8 @@ public final class ContactUsFormData {
 @Test(description = "...")
 @Story("...")
 ```
+
+Note: @Story can be placed either on the test method or on the class level. Both are valid.
 
 ### Login override
 

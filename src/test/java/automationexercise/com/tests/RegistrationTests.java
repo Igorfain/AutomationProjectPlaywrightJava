@@ -10,26 +10,22 @@ import org.testng.annotations.Test;
 @Story("Registration")
 public class RegistrationTests extends BaseTest {
     @Override
-    protected boolean doDefaultLogin() { return false; } // без логина
+    protected boolean doDefaultLogin() { return false; } // without login
 
     private LoginSteps loginSteps;
 
     @BeforeMethod
     public void setUpTest() {
         loginSteps = new LoginSteps(page);
-
     }
 
     @Test(description = "Verify new user registration")
     public void registerNewUser() {
-        RegistrationData registrationData = new RegistrationData();
-
-        String genderType = registrationData.getGenderType();
-        String day = registrationData.getDay();
-        String month = registrationData.getMonth();
-        String year = registrationData.getYear();
-        String state = registrationData.getState();
-        String countryValue = registrationData.getCountryValue();
-        loginSteps.registerNewUser(genderType,day,month,year,state,countryValue);
+        String day = RegistrationData.getDay();
+        String month = RegistrationData.getMonth();
+        String year = RegistrationData.getYear();
+        String state = RegistrationData.getState();
+        String countryValue = RegistrationData.getCountryValue();
+        loginSteps.registerNewUser(day,month,year,state,countryValue);
     }
 }

@@ -348,9 +348,7 @@ public final class ContactUsFormData {
 
 ```java
 @Test(description = "...")
-@Epic("...")
 @Story("...")
-@Tag("...")
 ```
 
 ### Login override

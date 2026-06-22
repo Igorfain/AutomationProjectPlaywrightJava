@@ -3,9 +3,11 @@ package automationexercise.com.tests;
 import automationexercise.com.infra.base.BaseTest;
 import automationexercise.com.steps.LoginSteps;
 import automationexercise.com.utils.ConfigReader;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Story("Login Negative Scenarios")
 public class LoginNegativeTests extends BaseTest {
 
     private LoginSteps loginSteps;

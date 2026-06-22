@@ -29,13 +29,12 @@ public class LoginTests extends BaseTest {
 
     @Test (description = "Contact Us form verify")
     public void contactUsVerify() {
-        ContactUsData contactUsData = new ContactUsData();
 
-        String name = contactUsData.getName();
-        String email = contactUsData.getEmail();
-        String subject = contactUsData.getSubject();
-        String message = contactUsData.getMessage();
-        String filePath = contactUsData.getFilePath();
+        String name = ContactUsData.getName();
+        String email = ContactUsData.getEmail();
+        String subject = ContactUsData.getSubject();
+        String message = ContactUsData.getMessage();
+        String filePath = ContactUsData.getFilePath();
 
         contactUsSteps
                 .clickContactUsButton()

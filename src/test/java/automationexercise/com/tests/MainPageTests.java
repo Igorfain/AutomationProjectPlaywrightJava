@@ -13,7 +13,7 @@ public class MainPageTests extends BaseTest {
 
     @BeforeMethod
     public void setUpTest() {
-        mainPageSteps= new MainPageSteps(page);
+        mainPageSteps = new MainPageSteps(page);
     }
 
     @Test(description = "Verify main page logo")

@@ -1,44 +1,32 @@
 package automationexercise.com.infra.testdata;
 
-public class RegistrationData {
+public final class RegistrationData {
 
-    private final String genderType;
-    private final String day;
-    private final String month;
-    private final String year;
-    private final String state;
-    private final String countryValue;
+    private static final String day = "17";
+    private static final String month = "June";
+    private static final String year = "1993";
+    private static final String state = "South";
+    private static final String countryValue = "Israel";
 
-    public RegistrationData() {
-        genderType = "#id_gender1";
-        day = "17";
-        month = "June";
-        year = "1993";
-        state = "South";
-        countryValue = "Israel";
-    }
+    private RegistrationData() {}
 
-    public String getGenderType() {
-        return genderType;
-    }
-
-    public String getDay() {
+    public static String getDay() {
         return day;
     }
 
-    public String getMonth() {
+    public static String getMonth() {
         return month;
     }
 
-    public String getYear() {
+    public static String getYear() {
         return year;
     }
 
-    public String getState() {
+    public static String getState() {
         return state;
     }
 
-    public String getCountryValue() {
+    public static String getCountryValue() {
         return countryValue;
     }
 }

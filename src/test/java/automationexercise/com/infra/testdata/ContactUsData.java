@@ -1,38 +1,32 @@
 package automationexercise.com.infra.testdata;
 
-public class ContactUsData {
+public final class ContactUsData {
 
-    private final String name;
-    private final String email;
-    private final String subject;
-    private final String message;
-    private final String filePath;
+    private static final String name = "Sheldon Cooper";
+    private static final String email = "sheldonCooper@mail.com";
+    private static final String subject = "Automation feedback";
+    private static final String message = "Great site for test practice!";
+    private static final String filePath = "src/test/resources/test.txt";
 
-    public ContactUsData() {
-        name = "Sheldon Cooper";
-        email = "sheldonCooper@mail.com";
-        subject = "Automation feedback";
-        message = "Great site for test practice!";
-        filePath = "src/test/resources/test.txt";
-    }
+    private ContactUsData() {}
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public String getSubject() {
+    public static String getSubject() {
         return subject;
     }
 
-    public String getMessage() {
+    public static String getMessage() {
         return message;
     }
 
-    public String getFilePath() {
+    public static String getFilePath() {
         return filePath;
     }
 }

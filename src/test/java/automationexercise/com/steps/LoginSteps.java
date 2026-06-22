@@ -47,13 +47,13 @@ public class LoginSteps {
     }
 
     @Step("Registering a new user")
-    public void registerNewUser(String genderType,String day, String month, String year,String state,String countryValue) {
+    public void registerNewUser(String day, String month, String year,String state,String countryValue) {
         ConsoleReporter.log("Registering a new user");
         String expectedUser = loginPage.signInUserNameInsert();
         loginPage
                 .signInEmailInsert()
                 .clickSignButton()
-                .selectRadioButton(genderType)
+                .selectRadioButton()
                 .signUpPasswordInsert()
                 .dateOfBirthSelect(day, month, year)
                 .selectOptionalCheckboxes()

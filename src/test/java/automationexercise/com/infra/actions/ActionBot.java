@@ -96,6 +96,18 @@ public class ActionBot {
     }
 
     /**
+     * Gets the visible, rendered text of an element (layout-aware).
+     * Ignores hidden elements and normalizes whitespace,
+     * making it suitable for nav items that contain icon characters.
+     *
+     * @param locator Locator of the element
+     * @return Visible inner text
+     */
+    public String getInnerText(Locator locator) {
+        return locator.innerText();
+    }
+
+    /**
      * Checks if an element contains the specified text.
      *
      * @param locator Locator of the element

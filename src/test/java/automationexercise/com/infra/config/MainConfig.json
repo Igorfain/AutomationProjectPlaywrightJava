@@ -2,7 +2,7 @@
   "url": "https://automationexercise.com/login",
 
   "Title 1": "Browser settings",
-  "headless": false,
+  "headless": true,
   "slowMo": 0,
   "timeout": 20000,
   "viewportWidth": 1920,

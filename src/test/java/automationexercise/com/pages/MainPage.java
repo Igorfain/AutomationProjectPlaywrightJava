@@ -27,6 +27,7 @@ public class MainPage extends BasePage {
     }
 
     public List<String> getTopBarItemTexts() {
+        actionBot.waitForVisibility(navItemLinks.first());
         List<Locator> navItemElements = navItemLinks.all();
         List<String> topBarItemTexts = new ArrayList<>();
 

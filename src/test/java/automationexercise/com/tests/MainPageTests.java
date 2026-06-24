@@ -9,6 +9,11 @@ import org.testng.annotations.Test;
 @Story("Main Page")
 public class MainPageTests extends BaseTest {
 
+    @Override
+    protected boolean doApiLogin() {
+        return false;
+    }
+
     private MainPageSteps mainPageSteps;
 
     @BeforeMethod

@@ -13,7 +13,7 @@ Created for **self-training**, portfolio purposes, and to demonstrate real test 
 ### **🔹 UI Tests (Playwright Web)**
 * https://github.com/Igorfain/AutomationProjectPlaywrightJava/tree/master/src/test/java/saucedemo/com
 
-## **📌 Important note: Some tests will failed because .env file is missing on repository (security reasons)
+## **📌 Important note: Some tests will be failed because .env file is missing on repository (security reasons)
 
 ---
 

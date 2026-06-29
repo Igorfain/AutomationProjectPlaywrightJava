@@ -16,9 +16,9 @@ public final class ProductApiAssertions {
 
         Assert.assertEquals(response.status(), 200, "HTTP status");
 
-        JsonObject body = JsonParser.parseString(response.text()).getAsJsonObject();
-        Assert.assertEquals(body.get("responseCode").getAsInt(), 200);
-        Assert.assertTrue(body.has("products"));
+        JsonObject productsListResponseBody = JsonParser.parseString(response.text()).getAsJsonObject();
+        Assert.assertEquals(productsListResponseBody.get("responseCode").getAsInt(), 200);
+        Assert.assertTrue(productsListResponseBody.has("products"));
     }
 
     public static void assertSearchProductResponse(APIResponse response) {
@@ -26,9 +26,9 @@ public final class ProductApiAssertions {
 
         Assert.assertEquals(response.status(), 200, "HTTP status");
 
-        JsonObject body = JsonParser.parseString(response.text()).getAsJsonObject();
-        Assert.assertEquals(body.get("responseCode").getAsInt(), 200);
-        Assert.assertTrue(body.has("products"));
+        JsonObject searchProductResponseBody = JsonParser.parseString(response.text()).getAsJsonObject();
+        Assert.assertEquals(searchProductResponseBody.get("responseCode").getAsInt(), 200);
+        Assert.assertTrue(searchProductResponseBody.has("products"));
     }
 
     // ---------- NEGATIVE ----------
@@ -39,9 +39,9 @@ public final class ProductApiAssertions {
 
         Assert.assertEquals(response.status(), 200);
 
-        JsonObject body = JsonParser.parseString(response.text()).getAsJsonObject();
-        Assert.assertEquals(body.get("responseCode").getAsInt(), 200);
-        Assert.assertTrue(body.has("products"));
+        JsonObject emptySearchResponseBody = JsonParser.parseString(response.text()).getAsJsonObject();
+        Assert.assertEquals(emptySearchResponseBody.get("responseCode").getAsInt(), 200);
+        Assert.assertTrue(emptySearchResponseBody.has("products"));
     }
 
     // Missing param -> logical error, HTTP still 200
@@ -50,10 +50,10 @@ public final class ProductApiAssertions {
 
         Assert.assertEquals(response.status(), 200);
 
-        JsonObject body = JsonParser.parseString(response.text()).getAsJsonObject();
-        Assert.assertEquals(body.get("responseCode").getAsInt(), 400);
+        JsonObject missingParamResponseBody = JsonParser.parseString(response.text()).getAsJsonObject();
+        Assert.assertEquals(missingParamResponseBody.get("responseCode").getAsInt(), 400);
         Assert.assertTrue(
-                body.get("message").getAsString().toLowerCase().contains("missing")
+                missingParamResponseBody.get("message").getAsString().toLowerCase().contains("missing")
         );
     }
 

@@ -19,10 +19,22 @@ public class PutTests extends BaseApiTest {
     public void readConfig() throws IOException {
         email = ConfigReader.getEnv("LOGIN_USERNAME");
         password = ConfigReader.getEnv("LOGIN_PASSWORD");
+
+        if (email == null || email.isBlank()) {
+            throw new IllegalStateException("`LOGIN_USERNAME` env is not set or blank");
+        }
+        if (password == null || password.isBlank()) {
+            throw new IllegalStateException("`LOGIN_PASSWORD` env is not set or blank");
+        }
+    }
+
+    @BeforeClass(dependsOnMethods = "readConfig")
+    public void initSteps() {
         userApiSteps = new UserApiSteps(AUTOMATION_EXERCISE_URI);
     }
 
     @Test(description = "Update user account details")
+    @Story("User API")
     @Owner("Igor")
     public void testUpdateUserAccount() {
         userApiSteps.verifyUpdateUserAccountIsSuccessful(email, password);

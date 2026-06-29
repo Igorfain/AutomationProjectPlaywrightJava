@@ -6,6 +6,7 @@ import io.qameta.allure.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@Story("Product API")
 public class GetTests extends BaseApiTest {
 
     private ProductApiSteps productApiSteps;

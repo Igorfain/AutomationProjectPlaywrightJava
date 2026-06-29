@@ -30,9 +30,13 @@ public class UserApiSteps {
                 loginFormData
         );
 
-        Assert.assertEquals(loginResponse.getStatusCode(), 200, "Expected status code 200");
-        Assert.assertTrue(loginResponse.getBody().asString().contains("User exists!"),
-                "Response body should contain 'User exists!'");
+        int actualLoginHttpStatus = loginResponse.getStatusCode();
+        Assert.assertEquals(actualLoginHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualLoginHttpStatus);
+
+        String actualLoginResponseBody = loginResponse.getBody().asString();
+        Assert.assertTrue(actualLoginResponseBody.contains("User exists!"),
+                "Response body should contain 'User exists!'. Actual: " + actualLoginResponseBody);
         return this;
     }
 
@@ -46,10 +50,13 @@ public class UserApiSteps {
                 updateUserFormData
         );
 
-        Assert.assertEquals(updateUserResponse.getStatusCode(), 200, "Expected status code 200 for user update");
-        String responseMessage = updateUserResponse.jsonPath().getString("message");
-        Assert.assertEquals(responseMessage, "User updated!",
-                "Response message should indicate user was updated");
+        int actualUpdateHttpStatus = updateUserResponse.getStatusCode();
+        Assert.assertEquals(actualUpdateHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualUpdateHttpStatus);
+
+        String actualUpdateResponseMessage = updateUserResponse.jsonPath().getString("message");
+        Assert.assertEquals(actualUpdateResponseMessage, "User updated!",
+                "Response message mismatch. Expected: 'User updated!', Actual: " + actualUpdateResponseMessage);
         return this;
     }
 }

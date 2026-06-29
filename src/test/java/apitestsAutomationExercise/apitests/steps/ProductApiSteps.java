@@ -9,6 +9,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,14 +29,20 @@ public class ProductApiSteps {
         Response productsListResponse = apiRequestHelper.sendGetRequest(baseUri + Endpoints.GET_ALL_PRODUCTS);
         Allure.addAttachment("Response Body", "application/json", productsListResponse.asString());
 
-        Assert.assertEquals(productsListResponse.getStatusCode(), 200);
+        int actualHttpStatus = productsListResponse.getStatusCode();
+        Assert.assertEquals(actualHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualHttpStatus);
 
         Map<String, Object> productsListJson = new Gson().fromJson(productsListResponse.asString(), Map.class);
-        Assert.assertEquals(((Double) productsListJson.get("responseCode")).intValue(), 200);
+        int actualProductsListApiResponseCode = ((Double) productsListJson.get("responseCode")).intValue();
+        Assert.assertEquals(actualProductsListApiResponseCode, 200,
+                "API responseCode mismatch. Expected: 200, Actual: " + actualProductsListApiResponseCode);
 
         List<Map<String, Object>> actualProducts = (List<Map<String, Object>>) productsListJson.get("products");
-        Assert.assertFalse(actualProducts.isEmpty());
-        Assert.assertTrue(actualProducts.get(0).containsKey("name"));
+        Assert.assertFalse(actualProducts.isEmpty(),
+                "Products list should not be empty. Expected: non-empty list, Actual: empty");
+        Assert.assertTrue(actualProducts.get(0).containsKey("name"),
+                "First product should contain 'name' field. Actual fields: " + actualProducts.get(0).keySet());
         return this;
     }
 
@@ -44,14 +51,20 @@ public class ProductApiSteps {
         ConsoleReporter.log("Verify /api/brandsList returns valid brands list");
         Response brandsListResponse = apiRequestHelper.sendGetRequest(baseUri + Endpoints.GET_ALL_BRANDS);
 
-        Assert.assertEquals(brandsListResponse.getStatusCode(), 200);
+        int actualHttpStatus = brandsListResponse.getStatusCode();
+        Assert.assertEquals(actualHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualHttpStatus);
 
         Map<String, Object> brandsListJson = new Gson().fromJson(brandsListResponse.asString(), Map.class);
-        Assert.assertEquals(((Double) brandsListJson.get("responseCode")).intValue(), 200);
+        int actualBrandsListApiResponseCode = ((Double) brandsListJson.get("responseCode")).intValue();
+        Assert.assertEquals(actualBrandsListApiResponseCode, 200,
+                "API responseCode mismatch. Expected: 200, Actual: " + actualBrandsListApiResponseCode);
 
         List<Map<String, Object>> actualBrands = (List<Map<String, Object>>) brandsListJson.get("brands");
-        Assert.assertFalse(actualBrands.isEmpty());
-        Assert.assertTrue(actualBrands.get(0).containsKey("brand"));
+        Assert.assertFalse(actualBrands.isEmpty(),
+                "Brands list should not be empty. Expected: non-empty list, Actual: empty");
+        Assert.assertTrue(actualBrands.get(0).containsKey("brand"),
+                "First brand should contain 'brand' field. Actual fields: " + actualBrands.get(0).keySet());
         return this;
     }
 
@@ -62,8 +75,13 @@ public class ProductApiSteps {
         Allure.addAttachment("Response Body", "application/json", postToProductsListResponse.asString());
 
         Map<String, Object> postToProductsListJson = new Gson().fromJson(postToProductsListResponse.asString(), Map.class);
-        Assert.assertEquals(((Double) postToProductsListJson.get("responseCode")).intValue(), 405);
-        Assert.assertTrue(postToProductsListJson.get("message").toString().contains("not supported"));
+        int actualPostNotAllowedResponseCode = ((Double) postToProductsListJson.get("responseCode")).intValue();
+        Assert.assertEquals(actualPostNotAllowedResponseCode, 405,
+                "API responseCode mismatch. Expected: 405, Actual: " + actualPostNotAllowedResponseCode);
+
+        String actualNotAllowedMessage = postToProductsListJson.get("message").toString();
+        Assert.assertTrue(actualNotAllowedMessage.contains("not supported"),
+                "Message should contain 'not supported'. Actual: " + actualNotAllowedMessage);
         return this;
     }
 
@@ -76,28 +94,34 @@ public class ProductApiSteps {
                 keyword
         );
 
-        Assert.assertEquals(searchProductResponse.getStatusCode(), 200, "Expected status code 200");
+        int actualHttpStatus = searchProductResponse.getStatusCode();
+        Assert.assertEquals(actualHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualHttpStatus);
         Assert.assertTrue(searchProductResponse.getBody().asString().contains(keyword),
-                "Response body should contain '" + keyword + "'");
+                "Response body should contain '" + keyword + "'. Actual body: " + searchProductResponse.getBody().asString());
         return this;
     }
 
     @Step("Verify search product without parameter returns 400 responseCode")
     public ProductApiSteps verifySearchProductWithoutParamReturns400() {
         ConsoleReporter.log("Verify search product without parameter returns 400 responseCode");
-        Response searchProductWithoutParamResponse = apiRequestHelper.sendPostFormRequest(
+        Response searchProductWithoutParamResponse = apiRequestHelper.sendPostRequestWithFormData(
                 baseUri + Endpoints.SEARCH_PRODUCT,
-                "",
-                ""
+                new HashMap<>()
         );
 
         String searchWithoutParamResponseBody = searchProductWithoutParamResponse.asString();
         Map<String, Object> searchProductWithoutParamJson = new Gson().fromJson(searchWithoutParamResponseBody, Map.class);
 
         int apiResponseCode = ((Number) searchProductWithoutParamJson.get("responseCode")).intValue();
-        Assert.assertEquals(apiResponseCode, 400, "Expected internal API responseCode = 400");
-        Assert.assertTrue(searchWithoutParamResponseBody.contains("Bad request"), "Body should contain 'Bad request' message");
-        Assert.assertEquals(searchProductWithoutParamResponse.getStatusCode(), 200, "HTTP status should always be 200 for this API");
+        Assert.assertEquals(apiResponseCode, 400,
+                "API responseCode mismatch. Expected: 400, Actual: " + apiResponseCode);
+        Assert.assertTrue(searchWithoutParamResponseBody.contains("Bad request"),
+                "Body should contain 'Bad request'. Actual: " + searchWithoutParamResponseBody);
+
+        int actualHttpStatus = searchProductWithoutParamResponse.getStatusCode();
+        Assert.assertEquals(actualHttpStatus, 200,
+                "HTTP status mismatch. Expected: 200, Actual: " + actualHttpStatus);
         return this;
     }
 }

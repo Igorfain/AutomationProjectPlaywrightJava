@@ -11,6 +11,8 @@ BEFORE writing any code, you MUST:
 4. If you used Stream API → REWRITE it using a for-each loop
 5. Verify that you did not invent any methods, classes, fields, locators, or framework APIs
 6. Normal limited humor and human talking is acceptable 
+7. Never make changes without approving
+8. Never make changes in areas that not related to the request or promt,if needed,ask me
 
 
 VIOLATIONS ARE NOT ACCEPTABLE.

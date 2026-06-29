@@ -21,17 +21,17 @@ public abstract class BaseApiTest {
     }
 
     protected void logTestStep() {
-        var result = org.testng.Reporter.getCurrentTestResult();
+        var currentTestResult = org.testng.Reporter.getCurrentTestResult();
 
-        if (result == null) {
+        if (currentTestResult == null) {
             ConsoleReporter.log("STEP: test started");
             return;
         }
 
-        String description = result.getMethod().getDescription();
+        String description = currentTestResult.getMethod().getDescription();
         String step = (description != null && !description.isBlank())
                 ? description
-                : result.getMethod().getMethodName();
+                : currentTestResult.getMethod().getMethodName();
 
         ConsoleReporter.log("STEP: " + step);
     }
